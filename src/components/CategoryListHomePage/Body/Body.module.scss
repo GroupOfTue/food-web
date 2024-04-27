@@ -1,0 +1,41 @@
+.section-heading {
+  margin: 10px 0;
+
+  h4 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 0;
+    position: relative;
+    display: inline-block;
+    padding-right: 20px;
+    background-color: #f6f7f9;
+    z-index: 2;
+  }
+}
+
+.heading-line {
+  position: relative;
+  width: 100%;
+
+  &::before {
+    width: 100%;
+    display: block;
+    top: 40%;
+    border-radius: 7px;
+    border-top-style: solid;
+    content: '';
+    position: absolute;
+    left: auto;
+    right: 0;
+    height: 0;
+    border: 3px solid #dcdee3;
+    overflow: hidden;
+  }
+}
+
+.item-list {
+  li {
+    border-bottom: 1px solid #e5e7ea;
+    border-right: 1px solid #e5e7ea;
+  }
+}

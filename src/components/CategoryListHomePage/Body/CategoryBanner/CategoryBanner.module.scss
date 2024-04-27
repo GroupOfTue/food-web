@@ -1,0 +1,25 @@
+.home-category-banner {
+    background-color: #ffdcb0;
+    padding: 30px;
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+  
+    img {
+      position: absolute;
+      right: -50px;
+      bottom: -50px;
+      mix-blend-mode: multiply;
+      height: 260px;
+    }
+  }
+
+.btn-outline-primary {
+    border-color: var(--primary);
+    color: var(--primary) !important;
+
+    &:hover {
+        background-color: var(--primary);
+        color: white !important;
+    }
+}

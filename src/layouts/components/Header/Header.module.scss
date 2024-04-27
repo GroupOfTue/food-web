@@ -1,0 +1,29 @@
+.container {
+  background-color: var(--white);
+}
+
+.dropdown-menu-toggle-item {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 1rem;
+  cursor: pointer;
+
+  &:hover {
+    color: black;
+  }
+}
+
+.logo {
+  margin-right: 7px;
+  max-height: 34px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.hover-primary-color {
+  &:hover {
+    color: var(--primary) !important;
+  }
+}
+

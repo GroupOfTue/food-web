@@ -1,0 +1,36 @@
+.grap-content {
+    .item {
+        cursor: pointer;
+    }
+
+    figure {
+        margin: 0;
+    }
+
+    .love-icon {
+        margin-right: 5px;
+    }
+
+    .price {
+        font-weight: 700;
+    }
+}
+
+.itemside {
+    display: flex;
+    align-items: center;
+
+    .img-sm {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+.input-spinner {
+    width: 120px;
+    flex-wrap: nowrap;
+  
+    input {
+      text-align: center;
+    }
+  }

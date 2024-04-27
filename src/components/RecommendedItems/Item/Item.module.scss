@@ -1,0 +1,35 @@
+.item {
+  display: inline-block;
+}
+
+.gutter-distance {
+  padding: 0 5px !important;
+}
+
+.card-product-grid {
+  margin-bottom: 20px;
+  overflow: hidden;
+  text-align: center;
+
+  a {
+    height: 180px;
+
+    img {
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+.info-wrap {
+  padding: 16px;
+  font-size: 0.95rem;
+  text-align: left;
+
+  div {
+    font-weight: 700;
+    text-align: left;
+  }
+}
+
+

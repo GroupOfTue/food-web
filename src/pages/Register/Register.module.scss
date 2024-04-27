@@ -1,0 +1,16 @@
+.agree-terms-lbl {
+    padding-left: 1.5rem;
+    position: relative;
+
+    input {
+        position: absolute;
+        left: 1.25rem;
+        display: block;
+        width: 1rem;
+        height: 1rem;
+        pointer-events: none;
+        content: "";
+        background-color: #fff;
+        border: #969696 solid 1px;
+    }
+}

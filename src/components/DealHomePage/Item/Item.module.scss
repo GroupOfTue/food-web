@@ -1,0 +1,33 @@
+.card-product-grid {
+  text-align: center;
+  border-right: 1px solid #e5e7ea;
+
+  & > a {
+    display: block;
+    height: 180px;
+
+    img {
+      width: auto;
+      object-fit: cover;
+      height: 100%;
+      max-width: 100%;
+    }
+  }
+
+  &:hover {
+    -webkit-box-shadow: 0 4px 15px rgba(153, 153, 153, 0.3);
+    transition: 0.3s;
+    z-index: 2;
+  }
+}
+
+.title-discount-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  span {
+    margin-top: 5px;
+  }
+}

@@ -10,36 +10,36 @@ import Item from './Item';
 function CartItem() {
   const cx = classNames.bind(styles);
   const navigate = useNavigate();
-  const [priceTotal, setPriceTotal] = useState(() => {
-    
-    return JSON.parse(localStorage.getItem('totalPriceProductList')) ?? []
-  }
-    );
-  const [productListAddToCart, setProductListAddToCart] = useState(
-    JSON.parse(localStorage.getItem('productListAddToCart')),
-  );
+  // const [priceTotal, setPriceTotal] = useState(() => {
 
-  //check the product list add to cart is empty
-  useEffect(() => {
-    if (productListAddToCart.length === 0) {
-      setPriceTotal(0);
-      localStorage.setItem('totalPriceProductList', 0);
-    }
-  }, [productListAddToCart]);
+  //   return JSON.parse(localStorage.getItem('totalPriceProductList')) ?? []
+  // }
+  //   );
+  // const [productListAddToCart, setProductListAddToCart] = useState(
+  //   JSON.parse(localStorage.getItem('productListAddToCart')),
+  // );
 
-  //handle when delete a product
-  const handleDelete = (id) => {
-    const arr = JSON.parse(localStorage.getItem('productListAddToCart'));
-    arr.splice(id, 1);
-    localStorage.setItem('productListAddToCart', JSON.stringify(arr));
-    setProductListAddToCart(arr);
-  };
+  // //check the product list add to cart is empty
+  // useEffect(() => {
+  //   if (productListAddToCart.length === 0) {
+  //     setPriceTotal(0);
+  //     localStorage.setItem('totalPriceProductList', 0);
+  //   }
+  // }, [productListAddToCart]);
 
-  //handle when product quantity change 
-  const handelQuantityChange = (total) => {
-    const totalPriceProductList = localStorage.getItem('totalPriceProductList');
-    setPriceTotal(totalPriceProductList);
-  };
+  // //handle when delete a product
+  // const handleDelete = (id) => {
+  //   const arr = JSON.parse(localStorage.getItem('productListAddToCart'));
+  //   arr.splice(id, 1);
+  //   localStorage.setItem('productListAddToCart', JSON.stringify(arr));
+  //   setProductListAddToCart(arr);
+  // };
+
+  // //handle when product quantity change
+  // const handelQuantityChange = (total) => {
+  //   const totalPriceProductList = localStorage.getItem('totalPriceProductList');
+  //   setPriceTotal(totalPriceProductList);
+  // };
   return (
     <section className="section-content padding-y">
       <div className="container">
@@ -57,12 +57,12 @@ function CartItem() {
                       Price
                     </th>
                     <th scope="col" className="text-right" width="200">
-                      {' '}
+                      Total{' '}
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {productListAddToCart.map((item, index) => (
+                  {/* {productListAddToCart.map((item, index) => (
                     <Item
                       key={index}
                       id={index}
@@ -74,7 +74,7 @@ function CartItem() {
                       deleteProduct={handleDelete}
                       quantityChange={handelQuantityChange}
                     />
-                  ))}
+                  ))} */}
                 </tbody>
               </table>
 
@@ -116,7 +116,7 @@ function CartItem() {
               <div className={cx('card-body', cx('shopping-information'))}>
                 <div className="dlist-align">
                   <dt>Total price:</dt>
-                  <dd className="text-right">USD {priceTotal}</dd>
+                  <dd className="text-right">USD {}</dd>
                 </div>
                 <div className="dlist-align">
                   <dt>Discount:</dt>
@@ -125,7 +125,7 @@ function CartItem() {
                 <div className="dlist-align">
                   <dt>Total:</dt>
                   <dd className="text-right  h5">
-                    <strong>{priceTotal}</strong>
+                    <strong>{}</strong>
                   </dd>
                 </div>
                 <hr />

@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 import clsx from 'clsx';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 import images from '~/access/images';
@@ -10,7 +10,7 @@ const cx = classNames.bind(styles);
 
 function Header() {
   const navigate = useNavigate();
-  
+
   return (
     <header className={clsx('section-header', 'bg-white', cx('container'))}>
       <section className="border-bottom">
@@ -75,7 +75,7 @@ function Header() {
 
             <ul className="nav ">
               <li className="nav-item">
-                <a href="#" className={clsx('nav-link', cx('dropdown-menu-toggle-item'))}>
+                <a onClick={() => navigate('/aboutme')} className={clsx('nav-link', cx('dropdown-menu-toggle-item'))}>
                   {' '}
                   <i className="fa fa-user-circle"></i> My Account{' '}
                 </a>
@@ -101,7 +101,7 @@ function Header() {
       <section className="border-bottom">
         <nav className="navbar navbar-main  navbar-expand-lg navbar-light">
           <div className="container">
-            <Link to='/' className="navbar-brand">
+            <Link to="/" className="navbar-brand">
               <img src={images.logo} className={cx('logo')} />
             </Link>
             <button
@@ -119,12 +119,12 @@ function Header() {
             <div className="collapse navbar-collapse" id="main_nav2">
               <ul className="navbar-nav mr-auto">
                 <li className="nav-item">
-                  <a className={clsx('nav-link', cx('hover-primary-color'))} href="#">
+                  <a className={clsx('nav-link', cx('hover-primary-color'))} href="/">
                     Home{' '}
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className={clsx('nav-link', cx('hover-primary-color'))} href="#">
+                  <a className={clsx('nav-link', cx('hover-primary-color'))} href="/productlist">
                     Products
                   </a>
                 </li>

@@ -17,7 +17,7 @@ const publicRoutes = [
   { path: '/CartItem', component: CartItem},
   { path: '/Login', component: Login, layout: null},
   { path: '/Register', component: Register, layout: null},
-  { path: '/Aboutme', component: Aboutme, layout: null},
+  { path: '/Aboutme', component: Aboutme},
 ];
 
 //Private routes

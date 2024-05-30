@@ -75,7 +75,7 @@ function Header() {
 
             <ul className="nav ">
               <li className="nav-item">
-                <a href="#" className={clsx('nav-link', cx('dropdown-menu-toggle-item'))}>
+                <a href="Aboutme" className={clsx('nav-link', cx('dropdown-menu-toggle-item'))}>
                   {' '}
                   <i className="fa fa-user-circle"></i> My Account{' '}
                 </a>

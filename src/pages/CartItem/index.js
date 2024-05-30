@@ -79,9 +79,12 @@ function CartItem() {
               </table>
 
               <div className="card-body border-top">
-                <a href="#" className={clsx('btn btn-primary float-md-right', cx('purchase-btn'))}>
+                <a
+                  onClick={() => navigate('/checkout')}
+                  className={clsx('btn btn-primary float-md-right', cx('purchase-btn'))}
+                >
                   {' '}
-                  Make Purchase <i className="fa fa-chevron-right"></i>{' '}
+                  Check Out <i className="fa fa-chevron-right"></i>{' '}
                 </a>
                 <a onClick={() => navigate(-1)} className="btn btn-light">
                   {' '}

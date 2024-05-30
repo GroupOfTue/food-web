@@ -21,7 +21,7 @@ function Login() {
               <i className="fab fa-google"></i> Sign in with Google
             </a>
             <div className="form-group">
-              <input name="" className="form-control" placeholder="Email" type="text" />
+              <input name="phone" className="form-control" placeholder="Phone" type="text" />
             </div>
             <div className="form-group">
               <input name="" className="form-control" placeholder="Password" type="password" />

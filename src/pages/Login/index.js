@@ -47,7 +47,7 @@ function Login() {
       </div>
 
       <p className="text-center mt-4">
-        Don't have account? <a href="./page-user-register.php">Sign up</a>
+        Don't have account? <a href="./Register">Sign up</a>
       </p>
       <br />
       <br />

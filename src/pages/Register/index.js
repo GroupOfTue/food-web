@@ -93,7 +93,7 @@ function Register() {
         </article>
       </div>
       <p className="text-center mt-4">
-        Have an account? <a href="./page-user-login.php">Log In</a>
+        Have an account? <a href="./Login">Log In</a>
       </p>
       <br />
       <br />

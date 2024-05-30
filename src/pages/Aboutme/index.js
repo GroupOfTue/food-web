@@ -8,7 +8,6 @@ function Aboutme() {
   const cx = classNames.bind(styles);
   return (
     <section className={(clsx('section-conten padding-y'), cx('container'))} style={{ 'minHeight': '84vh' }}>
-
       <div className="card mx-auto" style={{ 'maxWidth': '1000px', 'marginTop': '10px' }}>
         <div className="card-body">
           <h4 className="card-title mb-4">Account Information</h4>

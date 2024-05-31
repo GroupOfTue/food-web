@@ -134,8 +134,8 @@ function Header() {
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className={clsx('nav-link', cx('hover-primary-color'))} href="#">
-                    Electronics
+                  <a className={clsx('nav-link', cx('hover-primary-color'))} href="introduce">
+                  Introduce
                   </a>
                 </li>
                 <li className="nav-item">

@@ -6,6 +6,7 @@ import CartItem from '~/pages/CartItem'
 import Login from '~/pages/Login'
 import Register from '~/pages/Register'
 import Aboutme from '~/pages/Aboutme';
+import Introduce from '~/pages/Introduce';
 
 
 //Public routes
@@ -18,6 +19,7 @@ const publicRoutes = [
   { path: '/Login', component: Login, layout: null},
   { path: '/Register', component: Register, layout: null},
   { path: '/Aboutme', component: Aboutme},
+  { path: '/Introduce', component: Introduce},
 ];
 
 //Private routes

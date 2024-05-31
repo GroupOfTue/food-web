@@ -233,6 +233,13 @@ ul {
 }
 
 /* --- overwite bootstrap css --- */
+.primary {
+  color: var(--primary);
+}
+
+.bg-primary {
+  background-color: var(--primary);
+}
 
 //button
 .btn-primary {

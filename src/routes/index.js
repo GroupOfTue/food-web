@@ -7,7 +7,7 @@ import Login from '~/pages/Login'
 import Register from '~/pages/Register'
 import Aboutme from '~/pages/Aboutme';
 import Introduce from '~/pages/Introduce';
-
+import PurchaseHistory from '~/pages/PurchaseHistory';
 
 //Public routes
 const publicRoutes = [
@@ -20,6 +20,7 @@ const publicRoutes = [
   { path: '/Register', component: Register, layout: null},
   { path: '/Aboutme', component: Aboutme},
   { path: '/Introduce', component: Introduce},
+  { path: '/PurchaseHistory', component: PurchaseHistory },
 ];
 
 //Private routes

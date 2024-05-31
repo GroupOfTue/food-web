@@ -26,15 +26,15 @@ function Checkout() {
                       </label>
                       <input type="text" id="fullname" placeholder="Mr John" />
                       <label for="email">
-                        <i class="fa fa-envelope">&nbsp;</i>Full Name
+                        <i class="fa fa-envelope">&nbsp;</i>Your Email
                       </label>
                       <input type="text" id="email" placeholder="John_admin@mail.com" />
                       <label for="address">
-                        <i class="fa fa-address-card-o">&nbsp;</i>Address
+                        <i class="fa fa-address-card">&nbsp;</i>Address
                       </label>
                       <input type="text" id="address" placeholder="542 st sant serit" />
                       <label for="city">
-                        <i class="fa fa-institution">&nbsp;</i>Phone number
+                        <i class="fa fa-phone">&nbsp;</i>Phone number
                       </label>
                       <input type="text" id="city" placeholder="Your number" />
                       <div class="containerx">

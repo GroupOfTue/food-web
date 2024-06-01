@@ -11,10 +11,8 @@ function CartItem() {
   const cx = classNames.bind(styles);
   const navigate = useNavigate();
   const [priceTotal, setPriceTotal] = useState(() => {
-    
-    return JSON.parse(localStorage.getItem('totalPriceProductList')) ?? []
-  }
-    );
+    return JSON.parse(localStorage.getItem('totalPriceProductList')) ?? [];
+  });
   const [productListAddToCart, setProductListAddToCart] = useState(
     JSON.parse(localStorage.getItem('productListAddToCart')),
   );
@@ -35,7 +33,7 @@ function CartItem() {
     setProductListAddToCart(arr);
   };
 
-  //handle when product quantity change 
+  //handle when product quantity change
   const handelQuantityChange = (total) => {
     const totalPriceProductList = localStorage.getItem('totalPriceProductList');
     setPriceTotal(totalPriceProductList);

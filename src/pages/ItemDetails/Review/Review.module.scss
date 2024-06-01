@@ -38,3 +38,48 @@
   font-size: 15px;
   line-height: 1.3;
 }
+.shopee-page-controller {
+  display: flex;
+  align-items: center;
+}
+
+.shopee-icon-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background-color: #f0f0f0; /* Light gray background */
+  cursor: pointer;
+}
+
+.shopee-icon-button.shopee-icon-button--left {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.shopee-icon-button.shopee-icon-button--right {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.shopee-button-no-outline {
+  border: none;
+  background-color: transparent;
+  padding: 5px 10px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.shopee-button-solid {
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.shopee-button-solid.shopee-button-solid--primary {
+  background-color: #4285f4; /* Shopee primary blue color */
+  color: #fff; /* White text color */
+}

@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 
 import styles from './ItemDetails.module.scss';
+import Review from './Review';
 import images from '~/access/images';
 import { GetAllProduct } from '~/MockApi/GetAllProduct.js';
 
@@ -13,6 +14,37 @@ function ItemDetails() {
   let itemDetails = {};
   const [quantity, setQuantity] = useState(1);
 
+  //tạo dữ liệu đánh giá fake
+  const reviews = [
+    {
+      id: 1,
+      authorName: 'John Doe',
+      date: '2024-06-01 8:53',
+      rating: 5,
+      content: 'Sản phẩm này tuyệt vời!',
+    },
+    {
+      id: 2,
+      authorName: 'John Doe2',
+      date: '2024-06-0 27:29',
+      rating: 3,
+      content: 'Sản phẩm này chưa được đẹp với tôi!',
+    },
+    {
+      id: 3,
+      authorName: 'John wtich',
+      date: '2024-06-04  9:40',
+      rating: 4,
+      content: 'Sản phẩm này chưa được đẹp với tôi!',
+    },
+    {
+      id: 4,
+      authorName: 'Jim',
+      date: '2024-06-10',
+      rating: 4,
+      content: 'Sản phẩm này  đẹp với tôi!',
+    },
+  ];
   //call api fake
   const productList = GetAllProduct;
   productList.forEach((e) => {
@@ -181,6 +213,7 @@ function ItemDetails() {
           </main>
         </div>
       </div>
+      <Review reviews={reviews} />
     </section>
   );
 }

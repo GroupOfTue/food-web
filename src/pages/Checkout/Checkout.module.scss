@@ -7,187 +7,26 @@
   color: white !important;
 }
 
-.shopping-information {
-  div {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-}
-
-.icon-text-wrap {
-  margin-bottom: 0;
-
-  .icon-text {
-    margin: 0;
-  }
-}
-.col-md-6 {
-  flex: 50%;
-}
-.col-25 {
-  flex: 30%;
-}
 .text-area {
   border-radius: 10px;
 }
-/* General Styles */
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  margin: 0;
-  padding: 0;
 
-  display: flex;
-  min-height: 100vh;
-  justify-content: center;
-  align-items: center;
-}
-span {
+.right {
   float: right;
   color: black;
 }
 
-span:nth-child(n + 2) {
+.right:nth-child(n + 2) {
   color: gray; /* Change color to gray from the second span onwards */
 }
 
-.container {
-  display: flex;
-  margin: 0 auto;
-  width: 90%;
-  max-width: 1000px;
-  background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.checkout-container {
-  text-align: center;
-  padding: 20px;
-}
-
-h2 {
-  margin-bottom: 20px;
-  font-size: 24px;
-  color: #333;
-}
-
-/* Form Styles */
-.form {
-  padding: 20px;
-}
-
-.billing-info,
-.payment-info {
-  margin-bottom: 20px;
-}
-
-h3 {
-  font-size: 18px;
-  margin-bottom: 10px;
-  color: #333;
-}
-
-label {
-  display: block;
-  margin-bottom: 5px;
-  color: #161515;
-}
-
 input[type='text'],
-input[type='number'] {
+input[type='phone'] {
   width: 100%;
   padding: 10px;
-  border: 1px solid #ddd;
+  border: 1px solid #1b1919;
   border-radius: 5px;
   margin-bottom: 10px;
-}
-
-input[type='text']:focus,
-input[type='number']:focus {
-  outline: none;
-  box-shadow: 0 0 2px 1px royalblue;
-}
-
-.city-state-zip,
-.exp-cvv {
-  display: flex;
-}
-
-.city-state-zip .col-50,
-.exp-cvv .col-50 {
-  flex: 1;
-  margin-right: 10px;
-}
-
-.icon-cards {
-  display: flex;
-  margin-bottom: 10px;
-}
-
-.icon-cards i {
-  font-size: 24px;
-  margin-right: 10px;
-  color: #ccc;
-}
-
-.check {
-  margin-bottom: 20px;
-}
-
-.check input[type='checkbox'] {
-  margin-right: 5px;
-}
-
-.button {
-  border: none;
-  outline: none;
-  padding: 15px 30px;
-  text-align: center;
-  background-color: dodgerblue;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.button:hover {
-  background-color: royalblue;
-}
-
-/* Cart Styles */
-.cart {
-  padding: 20px;
-}
-
-.cart h4 {
-  margin-bottom: 10px;
-  font-size: 18px;
-  color: #333;
-}
-
-.cart p {
-  margin-bottom: 10px;
-}
-
-.cart p a {
-  color: #333;
-  text-decoration: none;
-}
-
-.cart .right {
-  float: right;
-  color: #888;
-}
-
-.cart p:last-child {
-  border-bottom: 3px solid #ddd;
-  margin-bottom: 10px;
-}
-
-.cart p:last-child .right {
-  font-weight: bold;
-  color: #333;
 }
 
 /* Responsive Styles */

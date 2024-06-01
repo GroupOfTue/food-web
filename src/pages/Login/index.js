@@ -3,15 +3,34 @@ import clsx from 'clsx';
 
 import styles from './Login.module.scss';
 import images from '~/access/images';
+import { postHelloApi } from '~/api/user';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 function Login() {
   const cx = classNames.bind(styles);
+  const [phone, setPhone] = useState('');
+  const [password, setPassword] = useState('');
+  let navigate = useNavigate();
+
+const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await postHelloApi(phone, password);
+      if(response === 'valid user') {
+        navigate('/');
+      }
+    } catch (error) {
+      console.error("Lỗi đăng nhập:", error);
+    }
+  };
+
   return (
-    <section className={(clsx('section-conten padding-y'), cx('container'))} style={{ 'minHeight': '84vh' }}>
-      <div className="card mx-auto" style={{ 'maxWidth': '380px', 'marginTop': '100px' }}>
+    <section className={(clsx('section-conten padding-y'), cx('container'))} style={{ minHeight: '84vh' }}>
+      <div className="card mx-auto" style={{ maxWidth: '380px', marginTop: '100px' }}>
         <div className="card-body">
           <h4 className="card-title mb-4">Sign in</h4>
-          <form>
+          <form onSubmit={handleSubmit}>
             <a href="#" className={clsx('btn btn-facebook btn-block mb-2', cx('fb-btn'))}>
               {' '}
               <i className="fab fa-facebook-f"></i> Sign in with Facebook
@@ -21,19 +40,35 @@ function Login() {
               <i className="fab fa-google"></i> Sign in with Google
             </a>
             <div className="form-group">
-              <input name="phone" className="form-control" placeholder="Phone" type="text" />
+              <input
+                type="text"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                required
+                name="phone"
+                className="form-control"
+                placeholder="Phone"
+              />
             </div>
             <div className="form-group">
-              <input name="" className="form-control" placeholder="Password" type="password" />
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                name="password"
+                className="form-control"
+                placeholder="Password"
+              />
             </div>
 
             <div className="form-group">
               <a href="#" className="float-right">
                 Forgot password?
               </a>
-              <label className={clsx("form-check-label",cx('remember-lbl'))} htmlFor="remember">
+              <label className={clsx('form-check-label', cx('remember-lbl'))} htmlFor="remember">
                 <input type="checkbox" className="form-check-input" id="remember" name="vehicle2" value="something" />
-                Remember 
+                Remember
               </label>
             </div>
             <div className="form-group">

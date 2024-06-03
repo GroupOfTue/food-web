@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import clsx from 'clsx';
 import { useNavigate } from 'react-router-dom';
@@ -9,7 +9,12 @@ import styles from './Checkout.module.scss';
 function Checkout() {
   const cx = classNames.bind(styles);
   const navigate = useNavigate();
-
+  const [priceTotal] = useState(() => {
+    return JSON.parse(localStorage.getItem('totalPriceProductList')) ?? [];
+  });
+  const [productListAddToCart, setProductListAddToCart] = useState(
+    JSON.parse(localStorage.getItem('productListAddToCart')),
+  );
   return (
     <section className="section-content padding-y">
       <div className="container">
@@ -75,9 +80,10 @@ function Checkout() {
                         <i className="fa fa-shopping-cart">&nbsp;</i>4
                       </span>
                     </h4>
+
                     <p>
                       <a href="#">Product 1</a>
-                      <span className={cx('right')}>$15</span>
+                      <span className={cx('right')}>$</span>
                     </p>
                     <p>
                       <a href="#">Product 2</a>
@@ -89,7 +95,7 @@ function Checkout() {
                     </p>
                     <p>
                       <a href="#">Product 4</a>
-                      <span className={cx('right')}>$2</span>
+                      <span className={cx('right')}>$2 </span>
                     </p>
                     <p>&nbsp;</p>
                   </div>
@@ -101,7 +107,7 @@ function Checkout() {
                 {/* Your total price calculation logic here */}
                 <div className="dlist-align">
                   <dt>Total price:</dt>
-                  <dd className="text-right">USD {/* Total price */}</dd>
+                  <dd className="text-right">USD {priceTotal}</dd>
                 </div>
                 {/* ... other price details ... */}
                 <hr />

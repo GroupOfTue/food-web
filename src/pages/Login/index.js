@@ -3,7 +3,7 @@ import clsx from 'clsx';
 
 import styles from './Login.module.scss';
 import images from '~/access/images';
-import { postHelloApi } from '~/api/user';
+import { LoginApi } from '~/api/user';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
@@ -16,7 +16,7 @@ function Login() {
 const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await postHelloApi(phone, password);
+      const response = await LoginApi(phone, password);
       if(response === 'valid user') {
         navigate('/');
       }

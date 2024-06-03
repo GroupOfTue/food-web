@@ -77,15 +77,15 @@ function Footer() {
               <ul className="list-unstyled">
                 <li>
                   {' '}
-                  <a href="#"> User Login </a>
+                  <a href="Login"> User Login </a>
                 </li>
                 <li>
                   {' '}
-                  <a href="#"> User register </a>
+                  <a href="Register"> User register </a>
                 </li>
                 <li>
                   {' '}
-                  <a href="#"> Account Setting </a>
+                  <a href="Aboutme"> Account Setting </a>
                 </li>
                 <li>
                   {' '}

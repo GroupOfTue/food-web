@@ -1,14 +1,17 @@
-td {
-  > button {
-    padding: 5px 20px;
-    border-radius: 10px;
-    float: right;
-    transform: translateY(calc(50% + 5px));
-    &:hover {
-      background-color: #ff6a00;
-      border-color: #9099a6;
-    }
+.btn {
+  padding: 5px 20px;
+  border-radius: 10px;
+  float: right;
+
+  &:hover {
+    background-color: #ff6a00;
+    border-color: #9099a6;
+    color: #fff;
   }
+}
+
+.btn:nth-child(n + 1) {
+  transform: translateY(calc(50% + 5px));
 }
 .flex-container {
   display: flex;

@@ -21,7 +21,7 @@ function Login() {
               <i className="fab fa-google"></i> Sign in with Google
             </a>
             <div className="form-group">
-              <input name="" className="form-control" placeholder="Email" type="text" />
+              <input name="phone" className="form-control" placeholder="Phone" type="text" />
             </div>
             <div className="form-group">
               <input name="" className="form-control" placeholder="Password" type="password" />
@@ -47,7 +47,7 @@ function Login() {
       </div>
 
       <p className="text-center mt-4">
-        Don't have account? <a href="./page-user-register.php">Sign up</a>
+        Don't have account? <a href="./Register">Sign up</a>
       </p>
       <br />
       <br />

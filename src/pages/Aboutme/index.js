@@ -31,20 +31,20 @@ function Aboutme() {
   };
 
   return (
-    <section className={clsx('section-conten padding-y', cx('container'))} style={{ minHeight: '84vh' }}>
+    <section className={(clsx('section-conten padding-y'), cx('container'))} style={{ minHeight: '84vh' }}>
       <div className="card mx-auto" style={{ maxWidth: '1000px', marginTop: '10px' }}>
         <div className="card-body">
           <h4 className="card-title mb-4">Account Information</h4>
-          <table className="table">
+          <table class="table">
             <thead>
               <tr>
                 <th scope="col">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width="150"
-                    height="150"
+                    width="90"
+                    height="90"
                     fill="currentColor"
-                    className="bi bi-person-circle"
+                    class="bi bi-person-circle"
                     viewBox="0 0 16 16"
                   >
                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
@@ -53,10 +53,10 @@ function Aboutme() {
                       d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
                     />
                   </svg>{' '}
-                  Profile Picture
+                  Profile Ficture
                 </th>
                 <td scope="col">
-                  <button>Upload</button>
+                  <button className={cx('btn')}>Upload</button>
                 </td>
               </tr>
             </thead>
@@ -64,46 +64,46 @@ function Aboutme() {
               <tr>
                 <th scope="row">
                   <p>Name</p>
-                  <p className="label-Name">{userData.name}</p>
+                  <p class="label-Name">thangday</p>
                 </th>
                 <td>
-                  <button onClick={() => handleEdit('name')}>Edit</button>
+                  <button className={cx('btn')}>Edit</button>
                 </td>
               </tr>
               <tr>
                 <th scope="row">
                   <p>Email</p>
-                  <p className="label-Email">{userData.email}</p>
+                  <p class="label-Email">thang@gmail.com</p>
                 </th>
                 <td>
-                  <button onClick={() => handleEdit('email')}>Update</button>
+                  <button className={cx('btn')}>Update</button>
                 </td>
               </tr>
               <tr>
                 <th scope="row">
-                  <p>Mobile Number</p>
-                  <p className="label-MobileNumber">{userData.mobileNumber}</p>
+                  <p>Mobile number</p>
+                  <p class="label-Mobilephone">+123 123 123</p>
                 </th>
                 <td>
-                  <button onClick={() => handleEdit('mobileNumber')}>Edit</button>
+                  <button className={cx('btn')}>Edit</button>
                 </td>
               </tr>
               <tr>
                 <th scope="row">
-                  <p>Date of Birth</p>
-                  <p className="label-DateOfBirth">{userData.dateOfBirth}</p>
+                  <p>Date of birth</p>
+                  <p class="label-Date">-</p>
                 </th>
                 <td>
-                  <button onClick={() => handleEdit('dateOfBirth')}>Edit</button>
+                  <button className={cx('btn')}>Edit</button>
                 </td>
               </tr>
               <tr>
                 <th scope="row">
                   <p>Gender</p>
-                  <p className="label-Gender">{userData.gender}</p>
+                  <p class="label-Gender">-Chose your Gender-</p>
                 </th>
                 <td>
-                  <button>Edit</button>
+                  <button className={cx('btn')}>Edit</button>
                 </td>
               </tr>
               <tr>
@@ -113,7 +113,7 @@ function Aboutme() {
                 </th>
 
                 <td>
-                  <button>Change Password</button>
+                  <button className={cx('btn')}>Change Password</button>
                 </td>
               </tr>
             </tbody>

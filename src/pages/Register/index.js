@@ -17,17 +17,18 @@ function Register() {
           <form>
             <div className="form-row">
               <div className="col form-group">
-                <label>First name</label>
-                <input id="first-name" name="first-name" type="text" className="form-control" placeholder="" />
-              </div>
-              <div className="col form-group">
-                <label>Last name</label>
-                <input id="last-name" name="last-name" type="text" className="form-control" placeholder="" />
+                <label for="full-name">Full name</label>
+                <input id="full-name" name="full-name" type="text" className="form-control" placeholder="Example: John Smith" />
               </div>
             </div>
             <div className="form-group">
-              <label>Email</label>
-              <input id="email" name="email" type="email" className="form-control" placeholder="" />
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" type="phone" className="form-control" placeholder="Example: 0987654321" />
+              <small className="form-text text-muted">We'll never share your phone with anyone else.</small>
+            </div>
+            <div className="form-group">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" className="form-control" placeholder="Example: john.smith@example.com" />
               <small className="form-text text-muted">We'll never share your email with anyone else.</small>
             </div>
             <div className="form-group">
@@ -49,30 +50,17 @@ function Register() {
             </div>
             <div className="form-row">
               <div className="form-group col-md-6">
-                <label>City</label>
-                <input id="city" name="city" type="text" className="form-control" />
-              </div>
-              <div className="form-group col-md-6">
-                <label>Country</label>
-                <select name="country" id="country" className="form-control">
-                  <option> Choose...</option>
-                  <option value="uzbekistan">Uzbekistan</option>
-                  <option value="russia">Russia</option>
-                  <option value="united-states">
-                    United States
-                  </option>
-                  <option value="india">India</option>
-                  <option value="afganistan">Afganistan</option>
-                </select>
+                <label for="address">Address</label>
+                <input id="address" name="address" type="text" className="form-control" />
               </div>
             </div>
             <div className="form-row">
               <div className="form-group col-md-6">
-                <label>Create password</label>
+                <label for="create-password">Create password</label>
                 <input id="create-password" name="create-password" className="form-control" type="password" />
               </div>
               <div className="form-group col-md-6">
-                <label>Repeat password</label>
+                <label for="repeat-password">Repeat password</label>
                 <input id="repeat-password" name="repeat-password" className="form-control" type="password" />
               </div>
             </div>
@@ -93,7 +81,7 @@ function Register() {
         </article>
       </div>
       <p className="text-center mt-4">
-        Have an account? <a href="./page-user-login.php">Log In</a>
+        Have an account? <a href="./Login">Log In</a>
       </p>
       <br />
       <br />

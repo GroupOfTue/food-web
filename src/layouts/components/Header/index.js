@@ -75,7 +75,7 @@ function Header() {
 
             <ul className="nav ">
               <li className="nav-item">
-                <a onClick={() => navigate('/aboutme')} className={clsx('nav-link', cx('dropdown-menu-toggle-item'))}>
+                <a onClick={() => navigate('/Aboutme')} className={clsx('nav-link', cx('dropdown-menu-toggle-item'))}>
                   {' '}
                   <i className="fa fa-user-circle"></i> My Account{' '}
                 </a>
@@ -119,12 +119,12 @@ function Header() {
             <div className="collapse navbar-collapse" id="main_nav2">
               <ul className="navbar-nav mr-auto">
                 <li className="nav-item">
-                  <a className={clsx('nav-link', cx('hover-primary-color'))} href="/">
+                  <a className={clsx('nav-link', cx('hover-primary-color'))} onClick={() => navigate('/')}>
                     Home{' '}
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className={clsx('nav-link', cx('hover-primary-color'))} href="/productlist">
+                  <a className={clsx('nav-link', cx('hover-primary-color'))} onClick={() => navigate('/ProductList')}>
                     Products
                   </a>
                 </li>
@@ -134,8 +134,8 @@ function Header() {
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className={clsx('nav-link', cx('hover-primary-color'))} href="#">
-                    Electronics
+                  <a className={clsx('nav-link', cx('hover-primary-color'))} href="introduce">
+                    Introduce
                   </a>
                 </li>
                 <li className="nav-item">

@@ -13,16 +13,10 @@ function Aboutme() {
     name: 'Thang Day',
     email: 'thang@gmail.com',
     mobileNumber: '+123 123 123',
-    dateOfBirth: '-',
-    gender: 'Choose your Gender',
-    password: '',
+    dateOfBirth: '2024/05/11',
+    gender: 'Male',
+    password: '1234567890',
   });
-
-  const handleEdit = (field) => {
-    // Implement logic to handle editing the specified field (name, email, etc.)
-    // You can update the 'userData' state and re-render the component
-    console.log(`Editing ${field}`);
-  };
 
   const handleChangePassword = () => {
     // Implement logic to handle password change
@@ -64,7 +58,7 @@ function Aboutme() {
               <tr>
                 <th scope="row">
                   <p>Name</p>
-                  <p class="label-Name">thangday</p>
+                  <p class="label-Name">{userData.name}</p>
                 </th>
                 <td>
                   <button className={cx('btn')}>Edit</button>
@@ -73,7 +67,7 @@ function Aboutme() {
               <tr>
                 <th scope="row">
                   <p>Email</p>
-                  <p class="label-Email">thang@gmail.com</p>
+                  <p class="label-Email">{userData.email}</p>
                 </th>
                 <td>
                   <button className={cx('btn')}>Update</button>
@@ -82,7 +76,7 @@ function Aboutme() {
               <tr>
                 <th scope="row">
                   <p>Mobile number</p>
-                  <p class="label-Mobilephone">+123 123 123</p>
+                  <p class="label-Mobilephone">{userData.mobileNumber}</p>
                 </th>
                 <td>
                   <button className={cx('btn')}>Edit</button>
@@ -91,7 +85,7 @@ function Aboutme() {
               <tr>
                 <th scope="row">
                   <p>Date of birth</p>
-                  <p class="label-Date">-</p>
+                  <p class="label-Date">{userData.dateOfBirth}</p>
                 </th>
                 <td>
                   <button className={cx('btn')}>Edit</button>
@@ -100,7 +94,7 @@ function Aboutme() {
               <tr>
                 <th scope="row">
                   <p>Gender</p>
-                  <p class="label-Gender">-Chose your Gender-</p>
+                  <p class="label-Gender">{userData.gender}</p>
                 </th>
                 <td>
                   <button className={cx('btn')}>Edit</button>
@@ -109,9 +103,10 @@ function Aboutme() {
               <tr>
                 <th scope="row">
                   <p>Password</p>
-                  <p class="label-Password " type="password"></p>
+                  <p class="label-Password " type="password">
+                    {userData.password}
+                  </p>
                 </th>
-
                 <td>
                   <button className={cx('btn')}>Change Password</button>
                 </td>

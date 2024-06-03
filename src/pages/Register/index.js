@@ -87,12 +87,12 @@ function Register() {
                   defaultChecked={true}
                   type="radio"
                   name="gender"
-                  value="male"
+                  onChange={(e) => setGender(true)}
                 />
                 <span className="custom-control-label"> Male </span>
               </label>
               <label className="custom-control custom-radio custom-control-inline">
-                <input id="rad-female" className="custom-control-input" type="radio" name="gender" value="female" />
+                <input id="rad-female" className="custom-control-input" type="radio" name="gender" value="female" onChange={(e) => setGender(false)}/>
                 <span className="custom-control-label"> Female </span>
               </label>
             </div>

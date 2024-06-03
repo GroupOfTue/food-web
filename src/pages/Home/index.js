@@ -9,7 +9,8 @@ import CategoryListHomePage from '~/components/CategoryListHomePage';
 import RecommendedItems from '~/components/RecommendedItems';
 import { GetAllProductApparel } from '~/MockApi/GetAllProductApparel.js';
 import { GetAllProductElectronics } from '~/MockApi/GetAllProductElectronics.js';
-import { getAllProductApi } from '~/api/product'
+import { getAllProductApi, getAllProductByCateApi } from '~/api/product';
+import { useEffect, useState } from 'react';
 
 const cx = classNames.bind(styles);
 
@@ -17,6 +18,31 @@ function Home() {
   //fake call api
   const itemsApparel = GetAllProductApparel;
   const itemsElectronics = GetAllProductElectronics;
+
+  const [product, setProduct] = useState([]);
+  const [productInCate, setProductInCate] = useState([]);
+
+  useEffect(() => {
+    try {
+      getAllProductApi()
+        .then((result) => {
+          setProduct(result);
+        })
+        .catch((error) => {
+          console.log('loi get product: ', error);
+        });
+
+        getAllProductByCateApi()
+        .then((result) => {
+          setProductInCate(result);
+        })
+        .catch((error) => {
+          console.log('loi get product: ', error);
+        });
+    } catch (error) {
+      console.error('Lỗi đăng nhập:', error);
+    }
+  }, []);
 
   const categoryListFake = [
     {
@@ -103,15 +129,15 @@ function Home() {
       price: '$280.00',
     },
   ];
-
+  // console.log(pro);
   return (
     <>
       <MainSectionHomePage />
       <DealHomePage />
-      {categoryListFake.map((item, index) => (
-        <CategoryListHomePage key={index} headerText={item.headerText} banner={item.banner} itemList={item.itemList} />
-      ))}
-      <RecommendedItems itemRecommentList={itemRecommentListFake} />
+      {productInCate ? productInCate.map((item, index) => (
+        <CategoryListHomePage key={index} headerText={item.name} banner={{bannerId: item.id, title:item.name, discription:item.discription, images: item.image}} itemList={item.products} />
+      )) : "hlo"}
+      <RecommendedItems itemRecommentList={product} />
     </>
   );
 }

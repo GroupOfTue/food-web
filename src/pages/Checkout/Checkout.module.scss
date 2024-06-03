@@ -1,0 +1,43 @@
+.checkout-btn {
+  font-weight: 700;
+  color: white !important;
+}
+.back-to-cart-btn {
+  font-weight: 700;
+  color: white !important;
+}
+
+.text-area {
+  border-radius: 10px;
+}
+
+.right {
+  float: right;
+  color: black;
+}
+
+.right:nth-child(n + 2) {
+  color: gray; /* Change color to gray from the second span onwards */
+}
+
+input[type='text'],
+input[type='phone'] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #1b1919;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .col-75,
+  .col-25 {
+    flex: 1;
+    padding: 0 20px;
+  }
+}

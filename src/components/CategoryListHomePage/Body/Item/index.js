@@ -1,10 +1,11 @@
 import classNames from 'classnames/bind';
 import clsx from 'clsx';
 import { Link } from 'react-router-dom';
+import images from '~/access/images';
 
 import styles from './Item.module.scss';
 
-function Item({ id, title, address, images, onClick }) {
+function Item({ id, title, address, image, onClick }) {
   const cx = classNames.bind(styles);
 
   return (
@@ -22,7 +23,7 @@ function Item({ id, title, address, images, onClick }) {
             <p className="text-muted">
               <i className="fa fa-map-marker-alt"></i> {address}
             </p>
-            <img className={cx('img-sm')} src={images} />
+            <img className={cx('img-sm')} src={images['items'][image]} />
           </div>
         </div>
       </div>

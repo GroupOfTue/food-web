@@ -14,14 +14,14 @@ function Body({ banner, itemList }) {
     <div className="card card-home-category">
       <div className="row no-gutters">
         <div className="col-md-3">
-          <CategoryBanner bannerId={banner.bannerId} title={banner.title} discription={banner.discription} images={banner.images} />
+          <CategoryBanner bannerId={banner.bannerId} title={banner.title} discription={banner.discription} image={banner.images} />
         </div>
         <div className="col-md-9">
           <ul className={clsx('row', 'no-gutters', cx('item-list'))}>
             {itemList.map((item, index) => (
               <Item onClick={() => {
                 navigate(`ProductList`)
-              }} key={index} id={item.id} title={item.title} address={item.address} images={item.images} />
+              }} key={index} id={item.id} title={item.title} address={item.address} image={item.images} />
             ))}
           </ul>
         </div>

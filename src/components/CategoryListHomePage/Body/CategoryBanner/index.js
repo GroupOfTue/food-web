@@ -1,9 +1,10 @@
 import classNames from 'classnames/bind';
 import clsx from 'clsx';
+import images from '~/access/images';
 import styles from './CategoryBanner.module.scss';
 import { useNavigate } from 'react-router-dom';
 
-function CategoryBanner({ bannerId, title, discription, images }) {
+function CategoryBanner({ bannerId, title, discription, image }) {
   const cx = classNames.bind(styles);
   const navigate = useNavigate();
 
@@ -19,7 +20,7 @@ function CategoryBanner({ bannerId, title, discription, images }) {
       >
         Source now
       </div>
-      <img src={images} className="img-bg" />
+      <img src={images['items'][image]} className="img-bg" />
     </div>
   );
 }

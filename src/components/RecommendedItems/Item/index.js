@@ -11,7 +11,7 @@ function Item({ title, image, price }) {
       <div href="#" className={clsx('card', 'card-sm', cx('card-product-grid'))}>
         <a href="#" className="img-wrap">
           {' '}
-          <img src={image} />{' '}
+          <img src={images['items'][image]} />{' '}
         </a>
         <figcaption className={cx('info-wrap')}>
           <a href="#" className="title">

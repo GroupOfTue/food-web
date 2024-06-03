@@ -11,8 +11,11 @@ function RecommendedItems( {itemRecommentList} ) {
   return (
     <section className={cx('items-wrap')}>
       <Header title='Recommended items' />
-        {itemRecommentList.map((item, index) => 
-          <Item key={index} title={item.title} image={item.image} price={item.price} />
+        {itemRecommentList.map((item, index) => {
+          if(index < 12){
+          return <Item key={index} title={item.title} image={item.images} price={item.price} />
+          }
+        }
         )}
       <div className="row row-sm">
 

@@ -1,11 +1,15 @@
 import Home from '~/pages/Home';
-import ProductList from '~/pages/ProductList'
-import CategoryItems from '~/pages/CategoryItems'
-import ItemDetails from '~/pages/ItemDetails'
-import CartItem from '~/pages/CartItem'
-import Login from '~/pages/Login'
-import Register from '~/pages/Register'
+import ProductList from '~/pages/ProductList';
+import CategoryItems from '~/pages/CategoryItems';
+import ItemDetails from '~/pages/ItemDetails';
+import CartItem from '~/pages/CartItem';
+import Login from '~/pages/Login';
+import Register from '~/pages/Register';
 import Aboutme from '~/pages/Aboutme';
+
+import Purchase from '~/pages/Checkout';
+import Checkout from '~/pages/Checkout';
+
 import Introduce from '~/pages/Introduce';
 import PurchaseHistory from '~/pages/PurchaseHistory';
 
@@ -21,6 +25,7 @@ const publicRoutes = [
   { path: '/Aboutme', component: Aboutme},
   { path: '/Introduce', component: Introduce},
   { path: '/PurchaseHistory', component: PurchaseHistory },
+  { path: '/Checkout', component: Checkout },
 ];
 
 //Private routes

@@ -3,9 +3,33 @@ import clsx from 'clsx';
 
 import styles from './Aboutme.module.scss';
 import images from '~/access/images';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function Aboutme() {
   const cx = classNames.bind(styles);
+
+  const [userData, setUserData] = useState({
+    name: 'Thang Day',
+    email: 'thang@gmail.com',
+    mobileNumber: '+123 123 123',
+    dateOfBirth: '-',
+    gender: 'Choose your Gender',
+    password: '',
+  });
+
+  const handleEdit = (field) => {
+    // Implement logic to handle editing the specified field (name, email, etc.)
+    // You can update the 'userData' state and re-render the component
+    console.log(`Editing ${field}`);
+  };
+
+  const handleChangePassword = () => {
+    // Implement logic to handle password change
+    // You can update the 'userData' state and re-render the component
+    console.log('Changing password');
+  };
+
   return (
     <section className={(clsx('section-conten padding-y'), cx('container'))} style={{ minHeight: '84vh' }}>
       <div className="card mx-auto" style={{ maxWidth: '1000px', marginTop: '10px' }}>

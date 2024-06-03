@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import images from '~/access/images';
 import styles from './DealHomePage.module.scss';
 import Item from './Item';
-
+import React, { useState, useEffect } from 'react';
 function DealHomePage() {
   const cx = classNames.bind(styles);
 
@@ -35,6 +35,45 @@ function DealHomePage() {
     },
   ];
 
+  // Cập nhật thời gian
+  const [endDate] = useState(new Date('2024-06-10T23:00:00')); // Thay đổi ngày giờ kết thúc ở đây
+
+  const calculateTimeLeft = () => {
+    const difference = +endDate - +new Date();
+    if (difference < 0) {
+      // Đã hết thời gian
+      return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+    }
+
+    const timeLeft = {
+      days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+      hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+      minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
+      seconds: Math.floor((difference % (1000 * 60)) / 1000),
+    };
+    return timeLeft;
+  };
+
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTimeLeft(calculateTimeLeft());
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // const renderCountdown = () => {
+  //   return (
+  //     <div>
+  //       <span>{timeLeft.days}d</span>
+  //       <span>{timeLeft.hours}h</span>
+  //       <span>{timeLeft.minutes}m</span>
+  //       <span>{timeLeft.seconds}s</span>
+  //     </div>
+  //   );
+  // };
+
   return (
     <>
       <section className="pb-4">
@@ -46,19 +85,19 @@ function DealHomePage() {
             <div className={cx('timer')}>
               <div>
                 {' '}
-                <span className={cx('num')}>04</span> <small>Days</small>
+                <span className={cx('num')}>{timeLeft.days}</span> <small>Days</small>
               </div>
               <div>
                 {' '}
-                <span className={cx('num')}>12</span> <small>Hours</small>
+                <span className={cx('num')}>{timeLeft.hours}</span> <small>Hours</small>
               </div>
               <div>
                 {' '}
-                <span className={cx('num')}>58</span> <small>Min</small>
+                <span className={cx('num')}>{timeLeft.minutes}</span> <small>Min</small>
               </div>
               <div>
                 {' '}
-                <span className={cx('num')}>02</span> <small>Sec</small>
+                <span className={cx('num')}>{timeLeft.seconds}</span> <small>Sec</small>
               </div>
             </div>
           </div>

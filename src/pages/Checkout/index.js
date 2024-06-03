@@ -56,7 +56,7 @@ function Checkout() {
                 <a href="#" className={clsx('btn btn-primary float-md-right', cx('checkout-btn'))}>
                   Finish <i className="fa fa-chevron-right"></i>
                 </a>
-                <a onClick={() => navigate(-1)} className="btn btn-light">
+                <a onClick={() => navigate(-1)} className={cx('btn btn-light')}>
                   <i className={clsx('fa fa-chevron-left', cx('back-to-cart-btn'))}></i>
                   Back to Cart
                 </a>

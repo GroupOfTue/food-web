@@ -9,6 +9,7 @@ import CategoryListHomePage from '~/components/CategoryListHomePage';
 import RecommendedItems from '~/components/RecommendedItems';
 import { GetAllProductApparel } from '~/MockApi/GetAllProductApparel.js';
 import { GetAllProductElectronics } from '~/MockApi/GetAllProductElectronics.js';
+import { getAllProductApi } from '~/api/product'
 
 const cx = classNames.bind(styles);
 
@@ -43,7 +44,7 @@ function Home() {
   const itemRecommentListFake = [
     {
       title: 'Just another product name',
-      image: images.items.mot,
+      image: images['items']['mot'],
       price: '$179.00',
     },
     {

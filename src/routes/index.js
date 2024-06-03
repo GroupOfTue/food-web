@@ -15,7 +15,7 @@ import PurchaseHistory from '~/pages/PurchaseHistory';
 //Public routes
 const publicRoutes = [
   { path: '/', component: Home },
-  { path: '/ProductList', component: ProductList },
+  { path: '/ProductList/:categoryId', component: ProductList },
   { path: '/CategoryItems/:categoryId', component: CategoryItems },
   { path: '/ItemDetails/:id', component: ItemDetails },
   { path: '/CartItem', component: CartItem },

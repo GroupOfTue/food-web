@@ -5,11 +5,27 @@ import { GetAllProduct } from '~/MockApi/GetAllProduct.js';
 import images from '~/access/images';
 import styles from './ProductList.module.scss';
 import Item from './Item';
+import { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { getProductByCateIdApi } from '~/api/product';
+
 
 function ProductList() {
   const cx = classNames.bind(styles);
-  const itemList = GetAllProduct;
+  const [itemList, setItemList] = useState([]);
+  const { categoryId } = useParams();
 
+  try {
+    getProductByCateIdApi(categoryId)
+      .then((result) => {
+        setItemList(result);
+      })
+      .catch((error) => {
+        console.log('loi get product: ', error);
+      });
+  } catch (error) {
+    console.error('Lỗi đăng nhập:', error);
+  }
   return (
     <div>
       <strong className="mr-md-auto">32 Items found </strong>
@@ -17,12 +33,12 @@ function ProductList() {
         {itemList.splice(0,12).map((item, index) => 
         <Item
         newProduct = {item.newProduct}
-        image={item.images}
+        image={images['items'][item.images]}
         title={item.title}
         price={item.price}
         company={item.company}
         Guarantee={item.Guarantee}
-        reviewer={item.reviewsNumber}
+        reviewer={23}
         country={item.address}/>
         )}
       </div>

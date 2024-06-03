@@ -14,7 +14,7 @@ function CategoryBanner({ bannerId, title, discription, image }) {
       <p>{discription}</p>
       <div
         onClick={() => {
-          navigate(`/CategoryItems/${bannerId}`);
+          navigate(`/ProductList/${bannerId}`);
         }}
         className={clsx('btn', 'rounded-pill', cx('btn-outline-primary'))}
       >

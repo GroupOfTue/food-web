@@ -7,12 +7,14 @@ import styles from './CategoryItems.module.scss';
 import Item from './Item';
 import { GetAllProductApparel } from '~/MockApi/GetAllProductApparel.js';
 import { GetAllProductElectronics } from '~/MockApi/GetAllProductElectronics.js';
+import { getProductByCateIdApi } from '~/api/product';
+import { useState } from 'react';
 
 function CategoryItems() {
   const cx = classNames.bind(styles);
   const { categoryId } = useParams();
   const navigate = useNavigate();
-  let itemList = [];
+  const [itemList, setItemList] = useState([]);
 
   if (categoryId === 'apparel') {
     //call api get product apparel list fake
@@ -20,6 +22,19 @@ function CategoryItems() {
   } else if (categoryId === 'electronics') {
     itemList = GetAllProductElectronics;
   }
+
+  try {
+    getProductByCateIdApi(categoryId)
+      .then((result) => {
+        setItemList(result);
+      })
+      .catch((error) => {
+        console.log('loi get product: ', error);
+      });
+  } catch (error) {
+    console.error('Lỗi đăng nhập:', error);
+  }
+
   return (
     <div className={clsx('row', cx('category-wrap'))}>
       <aside className="col-md-2">
@@ -231,7 +246,7 @@ function CategoryItems() {
               discription={item.discription}
               price={item.price}
               onClick={() => {
-                navigate(`/ItemDetails/${item.id}`,{replace: true});
+                navigate(`/ItemDetails/${item.id}`, { replace: true });
               }}
             />
           );

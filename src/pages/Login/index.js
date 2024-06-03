@@ -5,19 +5,37 @@ import styles from './Login.module.scss';
 import images from '~/access/images';
 import { LoginApi } from '~/api/user';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function Login() {
   const cx = classNames.bind(styles);
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
+  const [remember, setRemember] = useState(false);
   let navigate = useNavigate();
 
-const handleSubmit = async (event) => {
+  useEffect(() => {
+    const rememberedPhone = localStorage.getItem('rememberedPhone');
+    const rememberedPassword = localStorage.getItem('rememberedPassword');
+    if (rememberedPhone && rememberedPassword) {
+      setPhone(rememberedPhone);
+      setPassword(rememberedPassword);
+      setRemember(true);
+    }
+  }, []);
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       const response = await LoginApi(phone, password);
-      if(response === 'valid user') {
+      if (response === 'valid user') {
+        if (remember) {
+          localStorage.setItem('rememberedPhone', phone);
+          localStorage.setItem('rememberedPassword', password);
+        } else {
+          localStorage.removeItem('rememberedPhone');
+          localStorage.removeItem('rememberedPassword');
+        }
         navigate('/');
       }
     } catch (error) {
@@ -67,7 +85,14 @@ const handleSubmit = async (event) => {
                 Forgot password?
               </a>
               <label className={clsx('form-check-label', cx('remember-lbl'))} htmlFor="remember">
-                <input type="checkbox" className="form-check-input" id="remember" name="vehicle2" value="something" />
+                <input
+                  type="checkbox"
+                  className="form-check-input"
+                  id="remember"
+                  checked={remember}
+                  onChange={(e) => setRemember(e.target.checked)}
+                  name="remember"
+                />
                 Remember
               </label>
             </div>

@@ -5,7 +5,7 @@ import styles from './Register.module.scss';
 import images from '~/access/images';
 import { registerApi } from '~/api/user';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 function Register() {
   const cx = classNames.bind(styles);
@@ -17,10 +17,20 @@ function Register() {
   const [address, setAddress] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
+  const [error, setError] = useState('');
   let navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (!username || !phone || !email || !address || !password || !repeatPassword) {
+      setError('All fields are required');
+      return;
+    } 
+    if (password !== repeatPassword) {
+      setError('Passwords do not match');
+      return;
+    }
+    setError('');
     try {
       const response = await registerApi(username, phone, email, gender, address, password);
       if (response === 'data inserted') {
@@ -28,6 +38,7 @@ function Register() {
       }
     } catch (error) {
       console.error('Lỗi đăng ký:', error);
+      setError('Registration failed');
     }
   };
 
@@ -41,7 +52,7 @@ function Register() {
           <form onSubmit={handleSubmit}>
             <div className="form-row">
               <div className="col form-group">
-                <label for="full-name">Full name</label>
+                <label htmlFor="user-name">Full name</label>
                 <input
                   id="user-name"
                   name="user-name"
@@ -54,7 +65,7 @@ function Register() {
               </div>
             </div>
             <div className="form-group">
-              <label for="phone">Phone</label>
+              <label htmlFor="phone">Phone</label>
               <input
                 id="phone"
                 name="phone"
@@ -67,7 +78,7 @@ function Register() {
               <small className="form-text text-muted">We'll never share your phone with anyone else.</small>
             </div>
             <div className="form-group">
-              <label for="email">Email</label>
+              <label htmlFor="email">Email</label>
               <input
                 id="email"
                 name="email"
@@ -87,18 +98,24 @@ function Register() {
                   defaultChecked={true}
                   type="radio"
                   name="gender"
-                  onChange={(e) => setGender(true)}
+                  onChange={() => setGender(true)}
                 />
                 <span className="custom-control-label"> Male </span>
               </label>
               <label className="custom-control custom-radio custom-control-inline">
-                <input id="rad-female" className="custom-control-input" type="radio" name="gender" value="female" onChange={(e) => setGender(false)}/>
+                <input
+                  id="rad-female"
+                  className="custom-control-input"
+                  type="radio"
+                  name="gender"
+                  onChange={() => setGender(false)}
+                />
                 <span className="custom-control-label"> Female </span>
               </label>
             </div>
             <div className="form-row">
               <div className="form-group col-md-6">
-                <label for="address">Address</label>
+                <label htmlFor="address">Address</label>
                 <input
                   id="address"
                   name="address"
@@ -111,7 +128,7 @@ function Register() {
             </div>
             <div className="form-row">
               <div className="form-group col-md-6">
-                <label for="create-password">Create password</label>
+                <label htmlFor="create-password">Create password</label>
                 <input
                   id="create-password"
                   name="create-password"
@@ -122,7 +139,7 @@ function Register() {
                 />
               </div>
               <div className="form-group col-md-6">
-                <label for="repeat-password">Repeat password</label>
+                <label htmlFor="repeat-password">Repeat password</label>
                 <input
                   id="repeat-password"
                   name="repeat-password"
@@ -133,10 +150,10 @@ function Register() {
                 />
               </div>
             </div>
+            {error && <div className="form-group"><div className="alert alert-danger">{error}</div></div>}
             <div className="form-group">
               <button name="submit" type="submit" className="btn btn-primary btn-block">
-                {' '}
-                Register{' '}
+                Register
               </button>
             </div>
             <div className="form-group">
@@ -145,17 +162,17 @@ function Register() {
                   type="checkbox"
                   className="form-check-input"
                   id="agree-terms"
-                  name="vehicle2"
-                  value="something"
+                  name="agree-terms"
+                  required
                 />
-                I am agree with <a href="#">terms and contitions</a>{' '}
+                I agree with <a href="#">terms and conditions</a>
               </label>
             </div>
           </form>
         </article>
       </div>
       <p className="text-center mt-4">
-        Have an account? <a href="./Login">Log In</a>
+        Have an account? <Link to="/login">Log In</Link>
       </p>
       <br />
       <br />

@@ -2,6 +2,7 @@ import classNames from 'classnames/bind';
 import clsx from 'clsx';
 import React, { useState, useEffect } from 'react';
 import styles from './Item.module.scss';
+import images from '~/access/images';
 
 function Item({
   id,
@@ -18,6 +19,7 @@ function Item({
   quantity,
   price,
   quantityChange,
+  idProduct,
 }) {
   const cx = classNames.bind(styles);
 
@@ -40,17 +42,16 @@ function Item({
     arr = [];
     localStorage.setItem('productListAddToCart', JSON.stringify(arr));
   };
-
-  //calculate total price
-  const totalPriceProductList = arr.reduce((total, item) => total + item.priceTotal, 0);
-  localStorage.setItem('totalPriceProductList', JSON.stringify(totalPriceProductList));
+//calculate total price
+const totalPriceProductList = arr.reduce((total, item) => total + item.priceTotal, 0);
+localStorage.setItem('totalPriceProductList', JSON.stringify(totalPriceProductList));
 
   return (
     <tr className={cx('grap-content')}>
       <td className={cx('item')}>
         <figure className={cx('itemside')}>
           <div className="aside">
-            <img src={image} className={cx('img-sm')} />
+            <img src={images['items'][image]} className={cx('img-sm')} />
           </div>
           <figcaption className="info">
             <a href="#" className="title text-dark">
@@ -68,7 +69,7 @@ function Item({
             {quantity > 1 ? (
               <button
                 onClick={() => {
-                  quantityChange(quantity - 1);
+                  quantityChange(idProduct,quantity - 1);
                 }}
                 className="btn btn-light"
                 type="button"
@@ -95,7 +96,7 @@ function Item({
           <div className="input-group-append">
             <button
               onClick={() => {
-                quantityChange(quantity + 1);
+                quantityChange(idProduct, quantity+1);
               }}
               className="btn btn-light"
               type="button"

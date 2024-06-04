@@ -10,9 +10,7 @@ import Item from './Item';
 function CartItem() {
   const cx = classNames.bind(styles);
   const navigate = useNavigate();
-  const [priceTotal, setPriceTotal] = useState(() => {
-    return JSON.parse(localStorage.getItem('totalPriceProductList')) ?? [];
-  });
+  const [priceTotal, setPriceTotal] = useState(0);
   const [productListAddToCart, setProductListAddToCart] = useState(
     JSON.parse(localStorage.getItem('productListAddToCart')),
   );
@@ -21,7 +19,9 @@ function CartItem() {
   useEffect(() => {
     if (productListAddToCart.length === 0) {
       setPriceTotal(0);
-      localStorage.setItem('totalPriceProductList', 0);
+    } else {
+  // lấy thông tin tổng tiền gán vào biến
+      setPriceTotal(localStorage.getItem('totalPriceProductList'))
     }
   }, [productListAddToCart]);
 
@@ -34,10 +34,25 @@ function CartItem() {
   };
 
   //handle when product quantity change
-  const handelQuantityChange = (total) => {
-    const totalPriceProductList = localStorage.getItem('totalPriceProductList');
-    setPriceTotal(totalPriceProductList);
+  const handelQuantityChange = (id, quantity) => {
+    if(quantity >= 0) {
+      //lọc qua mảng sản phẩm hiện tại để tính tiền của sản phẩm hiện tại và tồng tiền các sản phẩm
+      let arr = JSON.parse(localStorage.getItem('productListAddToCart'));
+      const arrNew = arr.map((item) => {
+        if(item.id === id) {
+          item.quantity = quantity
+          item.priceTotal = item.quantity * item.price
+          return item
+        }
+        return item
+      })
+
+      //đã thay đổi quantity của sản phẩm, set vào locallog
+      localStorage.setItem('productListAddToCart', JSON.stringify(arrNew))
+      setProductListAddToCart(arrNew)
+    }
   };
+
   return (
     <section className="section-content padding-y">
       <div className="container">
@@ -64,6 +79,7 @@ function CartItem() {
                     <Item
                       key={index}
                       id={index}
+                      idProduct={item.id}
                       image={item.images}
                       title={item.title}
                       quantity={item.quantity}

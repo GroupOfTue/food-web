@@ -73,15 +73,16 @@ function ItemDetails() {
   //handle when adding products to the cart
   const addToCart = () => {
     const productListAddToCart = localStorage.getItem('productListAddToCart');
-
     if (productListAddToCart) {
       const arr = JSON.parse(productListAddToCart);
-      const item = arr.find((item) => item.id === itemDetails.id);
-      if (item) {
-        item.quantity += quantity;
-        item.priceTotal = item.quantity * item.price;
-      } else {
-        arr.push({ ...itemDetails, priceTotal: quantity * itemDetails.price, quantity: quantity });
+      if(arr && itemDetails) {
+        const item = arr.find((item) => item.id === itemDetails.id);
+        if (item) {
+          item.quantity += quantity;
+          item.priceTotal = item.quantity * item.price;
+        } else {
+          arr.push({ ...itemDetails, priceTotal: quantity * itemDetails.price, quantity: quantity });
+        }
       }
 
       const totalPriceProductList = arr.reduce((total, item) => total + item.priceTotal, 0);

@@ -3,11 +3,16 @@ import clsx from 'clsx';
 import images from '~/access/images';
 import styles from './Item.module.scss';
 
-function Item({ title, image, price }) {
+function Item({ title, image, price, onClick }) {
   const cx = classNames.bind(styles);
 
   return (
-    <div className={clsx('col-xl-2', 'col-lg-3', 'col-md-4', 'col-6', cx('gutter-distance'), cx('item'))}>
+    <div
+      onClick={() => {
+        onClick();
+      }}
+      className={clsx('col-xl-2', 'col-lg-3', 'col-md-4', 'col-6', cx('gutter-distance'), cx('item'))}
+    >
       <div href="#" className={clsx('card', 'card-sm', cx('card-product-grid'))}>
         <a href="#" className="img-wrap">
           {' '}

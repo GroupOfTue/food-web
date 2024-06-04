@@ -129,14 +129,13 @@ function Home() {
       price: '$280.00',
     },
   ];
-  // console.log(pro);
   return (
     <>
       <MainSectionHomePage />
       <DealHomePage />
       {productInCate ? productInCate.map((item, index) => (
         <CategoryListHomePage key={index} headerText={item.name} banner={{bannerId: item.id, title:item.name, discription:item.discription, images: item.image}} itemList={item.products} />
-      )) : "hlo"}
+      )) : ""}
       <RecommendedItems itemRecommentList={product} />
     </>
   );

@@ -1,18 +1,20 @@
 import classNames from 'classnames/bind';
 import clsx from 'clsx';
 import { useParams } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import styles from './ItemDetails.module.scss';
 import Review from './Review';
 import images from '~/access/images';
+import { getProductDetails } from '~/api/product';
 import { GetAllProduct } from '~/MockApi/GetAllProduct.js';
 
 function ItemDetails() {
   const cx = classNames.bind(styles);
   const { id } = useParams();
-  let itemDetails = {};
+  // let itemDetails = {};
   const [quantity, setQuantity] = useState(1);
+  const [itemDetails, setItemDetails] = useState({});
 
   //tạo dữ liệu đánh giá fake
   const reviews = [
@@ -46,13 +48,28 @@ function ItemDetails() {
     },
   ];
   //call api fake
-  const productList = GetAllProduct;
-  productList.forEach((e) => {
-    if (e.id === +id) {
-      itemDetails = e;
-    }
-  });
+  // const productList = GetAllProduct;
+  // productList.forEach((e) => {
+  //   if (e.id === +id) {
+  //     itemDetails = e;
+  //   }
+  // });
 
+  useEffect(() => {
+    try {
+      getProductDetails(id)
+      .then((result) => {
+        console.log("itemdetails: ", result);
+        setItemDetails(result);
+      })
+      .catch((error) => {
+        console.log('loi get product: ', error);
+      });
+    } catch (error) {
+      console.error('Lỗi đăng nhập:', error);
+    }
+  },[])
+    
   //handle when adding products to the cart
   const addToCart = () => {
     const productListAddToCart = localStorage.getItem('productListAddToCart');
@@ -87,26 +104,26 @@ function ItemDetails() {
                   <div>
                     {' '}
                     <a href="#">
-                      <img src={itemDetails.images} />
+                      <img src={images['items'][itemDetails.images]} />
                     </a>
                   </div>
                 </div>
                 <div className={cx('sub-img-wrap')}>
                   <a href="#" className="item-thumb">
                     {' '}
-                    <img src={itemDetails.subImages[0]} />
+                    <img src={images['items'][itemDetails.images]} />
                   </a>
                   <a href="#" className="item-thumb">
                     {' '}
-                    <img src={itemDetails.subImages[1]} />
+                    <img src={images['items'][itemDetails.images]} />
                   </a>
                   <a href="#" className="item-thumb">
                     {' '}
-                    <img src={itemDetails.subImages[2]} />
+                    <img src={images['items'][itemDetails.images]} />
                   </a>
                   <a href="#" className="item-thumb">
                     {' '}
-                    <img src={itemDetails.subImages[3]} />
+                    <img src={images['items'][itemDetails.images]} />
                   </a>
                 </div>
               </article>
@@ -140,7 +157,7 @@ function ItemDetails() {
                 <span className="text-muted">USD</span>
               </div>
 
-              <p>{itemDetails.discription}</p>
+              <p>{itemDetails.description}</p>
 
               <dl className="row">
                 <dt className="col-sm-3">{itemDetails.Manufacturer}</dt>

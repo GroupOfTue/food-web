@@ -1,22 +1,9 @@
-.btn-xoa {
-    padding: 5px 10px;
-    background-color: #837f7f;
-    color: white;
-    border-radius: 10px;
-    float: right;
-    &:hover {
-      background-color: #ff6a00;
-      border-color: #9099a6;
-      color: #fff;
-    }
-  }
-  
-  .price {
-    text-align: center;
-  }
-  .image-wishlist {
-    display: flexbox;
-    width: 100px;
-    height: 70px;
-    padding: 5px 10px;
-  }
+.price {
+  text-align: center;
+}
+.image-wishlist {
+  display: flexbox;
+  width: 100px;
+  height: 70px;
+  padding: 5px 10px;
+}

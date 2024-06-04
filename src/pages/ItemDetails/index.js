@@ -58,24 +58,24 @@ function ItemDetails() {
   useEffect(() => {
     try {
       getProductDetails(id)
-      .then((result) => {
-        console.log("itemdetails: ", result);
-        setItemDetails(result);
-      })
-      .catch((error) => {
-        console.log('loi get product: ', error);
-      });
+        .then((result) => {
+          console.log('itemdetails: ', result);
+          setItemDetails(result);
+        })
+        .catch((error) => {
+          console.log('loi get product: ', error);
+        });
     } catch (error) {
       console.error('Lỗi đăng nhập:', error);
     }
-  },[])
-    
+  }, []);
+
   //handle when adding products to the cart
   const addToCart = () => {
     const productListAddToCart = localStorage.getItem('productListAddToCart');
     if (productListAddToCart) {
       const arr = JSON.parse(productListAddToCart);
-      if(arr && itemDetails) {
+      if (arr && itemDetails) {
         const item = arr.find((item) => item.id === itemDetails.id);
         if (item) {
           item.quantity += quantity;
@@ -224,6 +224,16 @@ function ItemDetails() {
                   </a>
                   <a href="#" className="btn btn-light">
                     <i className="fas fa-envelope"></i> <span className="text">Contact supplier</span>
+                  </a>
+                  <a
+                    data-original-title="Save to Wishlist"
+                    title=""
+                    href=""
+                    className={clsx('btn btn-light', cx('love-icon'))}
+                    data-toggle="tooltip"
+                  >
+                    {' '}
+                    <i className="fa fa-heart"></i>
                   </a>
                 </div>
               </div>

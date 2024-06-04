@@ -113,16 +113,6 @@ localStorage.setItem('totalPriceProductList', JSON.stringify(totalPriceProductLi
         </div>
       </td>
       <td className="text-right">
-        <a
-          data-original-title="Save to Wishlist"
-          title=""
-          href=""
-          className={clsx('btn btn-light', cx('love-icon'))}
-          data-toggle="tooltip"
-        >
-          {' '}
-          <i className="fa fa-heart"></i>
-        </a>
         <a onClick={() => deleteProduct(id)} className="btn btn-light">
           {' '}
           Remove

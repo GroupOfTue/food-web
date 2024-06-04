@@ -6,6 +6,7 @@ import CartItem from '~/pages/CartItem';
 import Login from '~/pages/Login';
 import Register from '~/pages/Register';
 import Aboutme from '~/pages/Aboutme';
+import Wishlist from '~/pages/Wishlist';
 
 import Checkout from '~/pages/Checkout';
 
@@ -25,6 +26,7 @@ const publicRoutes = [
   { path: '/Introduce', component: Introduce },
   { path: '/PurchaseHistory', component: PurchaseHistory },
   { path: '/Checkout', component: Checkout },
+  { path: '/Wishlist', component: Wishlist },
 ];
 
 //Private routes

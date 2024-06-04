@@ -81,7 +81,7 @@ function Header() {
                 </a>
               </li>
               <li className="nav-item">
-                <a href="#" className={clsx('nav-link', cx('dropdown-menu-toggle-item'))}>
+                <a href="/Wishlist" className={clsx('nav-link', cx('dropdown-menu-toggle-item'))}>
                   {' '}
                   <i className="fa fa-heart"></i> Wishlist{' '}
                 </a>

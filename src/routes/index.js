@@ -13,6 +13,9 @@ import Checkout from '~/pages/Checkout';
 import Introduce from '~/pages/Introduce';
 import PurchaseHistory from '~/pages/PurchaseHistory';
 import Order from '~/pages/Order';
+import ErrorPage404 from '~/pages/errorScreen/error404';
+import ErrorPage500 from '~/pages/errorScreen/error500';
+import ErrorPage403 from '~/pages/errorScreen/error403';
 
 //Public routes
 const publicRoutes = [
@@ -29,6 +32,9 @@ const publicRoutes = [
   { path: '/Checkout', component: Checkout },
   { path: '/Wishlist', component: Wishlist },
   { path: '/Order', component: Order },
+  { path: '*', component: ErrorPage404, layout: null },
+  { path: '/500', component: ErrorPage500, layout: null },
+  { path: '/403', component: ErrorPage403, layout: null },
 ];
 
 //Private routes

@@ -18,6 +18,9 @@ const images = {
     slide1: require('./banners/slide1.jpg'),
     slide2: require('./banners/slide2.jpg'),
     slide3: require('./banners/slide3.jpg'),
+    error404: require('./banners/error404.jpg'),
+    error403: require('./banners/error403.jpg'),
+    error500: require('./banners/error500.jpg'),
   },
   icon: {
     flags: {

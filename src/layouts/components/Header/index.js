@@ -129,8 +129,8 @@ function Header() {
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className={clsx('nav-link', cx('hover-primary-color'))} href="#">
-                    Supermarket
+                  <a className={clsx('nav-link', cx('hover-primary-color'))} href="/Cooking">
+                  Cooking
                   </a>
                 </li>
                 <li className="nav-item">
@@ -151,7 +151,7 @@ function Header() {
                   >
                     More
                   </a>
-                  <div className="dropdown-menu">
+                  {/* <div className="dropdown-menu">
                     <a className="dropdown-item" href="#">
                       Foods and Drink
                     </a>
@@ -168,7 +168,7 @@ function Header() {
                     <a className="dropdown-item" href="#">
                       Category 3
                     </a>
-                  </div>
+                  </div> */}
                 </li>
               </ul>
 

@@ -9,36 +9,36 @@ function Navbar() {
 
   return (
     <aside className="col-lg col-md-3 flex-lg-grow-0">
-      <h6>MY MARKETS</h6>
+      <h6>Keyword suggestions</h6>
       <nav className={cx('nav-home-aside')}>
         <ul className={clsx('menu-category', cx('menu-category-father'))}>
           <li>
-            <a href="#">Fashion and clothes</a>
+            <a href="#">traditional dishes</a>
           </li>
           <li>
-            <a href="#">Automobile and motors</a>
+            <a href="#">vegan dishes</a>
           </li>
           <li>
-            <a href="#">Gardening and agriculture</a>
+            <a href="#">quick meals</a>
           </li>
           <li>
-            <a href="#">Electronics and tech</a>
+            <a href="#">street food</a>
           </li>
           <li>
-            <a href="#">Packaginf and printing</a>
+            <a href="#">seafood dishes</a>
           </li>
           <li>
-            <a href="#">Home and kitchen</a>
+            <a href="#">street food</a>
           </li>
           <li>
-            <a href="#">Digital goods</a>
+            <a href="#">comfort food</a>
           </li>
           <li className={cx('has-submenu')}>
             <a href="#">
               More items
               <FontAwesomeIcon icon={faAngleRight} style={{ float: 'right', color: '#999' }} />
             </a>
-            <ul className={cx('submenu')}>
+            {/* <ul className={cx('submenu')}>
               <li>
                 <a href="#">Submenu name</a>
               </li>
@@ -51,7 +51,7 @@ function Navbar() {
               <li>
                 <a href="#">Some others</a>
               </li>
-            </ul>
+            </ul> */}
           </li>
         </ul>
       </nav>

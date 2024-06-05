@@ -93,6 +93,41 @@ function ItemDetails() {
       localStorage.setItem('totalPriceProductList', JSON.stringify([itemDetails.priceTotal]));
     }
   };
+  // Add item to wishlist
+  const addToWishlist = (itemDetails) => {
+    const wishlist = localStorage.getItem('wishlist');
+
+    // Parse wishlist data (handle potential errors)
+    let wishlistArr = [];
+    try {
+      wishlistArr = wishlist ? JSON.parse(wishlist) : [];
+    } catch (error) {
+      console.error('Error parsing wishlist:', error);
+      // Optionally notify user about the error
+    }
+
+    // Check if item already exists, display message if so
+    const existingItem = wishlistArr.find((item) => item.id === itemDetails.id);
+    if (existingItem) {
+      console.info('Item already in wishlist!');
+      // Optionally display a message to the user
+      return;
+    }
+
+    // Add new item to wishlist
+    wishlistArr.push({ ...itemDetails });
+
+    // Update wishlist in localStorage
+    localStorage.setItem('wishlist', JSON.stringify(wishlistArr));
+
+    console.info('Item added to wishlist successfully!');
+    const wishlistButton = document.querySelector('.love-icon'); // Replace with actual element id
+    if (wishlistButton) {
+      wishlistButton.style.display = 'none';
+    } else {
+      console.warn("Element with id='heart' not found. Please check the element's id.");
+    }
+  };
 
   return (
     <section className="section-content bg-white padding-y">
@@ -228,12 +263,14 @@ function ItemDetails() {
                   <a
                     data-original-title="Save to Wishlist"
                     title=""
-                    href=""
+                    onClick={() => {
+                      addToWishlist(itemDetails);
+                    }}
                     className={clsx('btn btn-light', cx('love-icon'))}
                     data-toggle="tooltip"
                   >
                     {' '}
-                    <i className="fa fa-heart"></i>
+                    <i className="fa fa-heart" style={{ color: 'red' }}></i>
                   </a>
                 </div>
               </div>

@@ -42,9 +42,9 @@ function Item({
     arr = [];
     localStorage.setItem('productListAddToCart', JSON.stringify(arr));
   };
-//calculate total price
-const totalPriceProductList = arr.reduce((total, item) => total + item.priceTotal, 0);
-localStorage.setItem('totalPriceProductList', JSON.stringify(totalPriceProductList));
+  //calculate total price
+  const totalPriceProductList = arr.reduce((total, item) => total + item.priceTotal, 0);
+  localStorage.setItem('totalPriceProductList', JSON.stringify(totalPriceProductList));
 
   return (
     <tr className={cx('grap-content')}>
@@ -55,7 +55,7 @@ localStorage.setItem('totalPriceProductList', JSON.stringify(totalPriceProductLi
           </div>
           <figcaption className="info">
             <a href="#" className="title text-dark">
-              Some name of item goes here nice
+              {title}
             </a>
             <p className="text-muted small">
               Size: XL, Color: blue, <br /> Brand: Gucci
@@ -69,7 +69,7 @@ localStorage.setItem('totalPriceProductList', JSON.stringify(totalPriceProductLi
             {quantity > 1 ? (
               <button
                 onClick={() => {
-                  quantityChange(idProduct,quantity - 1);
+                  quantityChange(idProduct, quantity - 1);
                 }}
                 className="btn btn-light"
                 type="button"
@@ -96,7 +96,7 @@ localStorage.setItem('totalPriceProductList', JSON.stringify(totalPriceProductLi
           <div className="input-group-append">
             <button
               onClick={() => {
-                quantityChange(idProduct, quantity+1);
+                quantityChange(idProduct, quantity + 1);
               }}
               className="btn btn-light"
               type="button"

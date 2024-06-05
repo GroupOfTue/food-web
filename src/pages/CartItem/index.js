@@ -17,7 +17,7 @@ function CartItem() {
 
   //check the product list add to cart is empty
   useEffect(() => {
-    if (productListAddToCart.length === 0) {
+    if (productListAddToCart && productListAddToCart.length === 0) {
       setPriceTotal(0);
     } else {
   // lấy thông tin tổng tiền gán vào biến
@@ -75,7 +75,7 @@ function CartItem() {
                   </tr>
                 </thead>
                 <tbody>
-                  {productListAddToCart.map((item, index) => (
+                  {productListAddToCart ? productListAddToCart.map((item, index) => (
                     <Item
                       key={index}
                       id={index}
@@ -88,7 +88,7 @@ function CartItem() {
                       deleteProduct={handleDelete}
                       quantityChange={handelQuantityChange}
                     />
-                  ))}
+                  )) : ""}
                 </tbody>
               </table>
 

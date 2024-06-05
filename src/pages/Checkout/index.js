@@ -1,61 +1,132 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 import clsx from 'clsx';
 import { useNavigate } from 'react-router-dom';
 
-import images from '~/access/images';
 import styles from './Checkout.module.scss';
+import {addOrderApi} from '~/api/order'
 
 function Checkout() {
   const cx = classNames.bind(styles);
   const navigate = useNavigate();
+  const [fullname, setFullname] = useState('');
+  const [email, setEmail] = useState('');
+  const [address, setAddress] = useState('');
+  const [phone, setPhone] = useState('');
+  const [note, setNote] = useState('');
+
   const [priceTotal] = useState(() => {
     return JSON.parse(localStorage.getItem('totalPriceProductList')) ?? [];
   });
   const [productListAddToCart, setProductListAddToCart] = useState(
     JSON.parse(localStorage.getItem('productListAddToCart')),
   );
+
+  const arrProductCart = JSON.parse(localStorage.getItem('productListAddToCart'))
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    arrProductCart.map((item) => {
+      console.log("item", item);
+      handleAddToOrderApi( item.id, item.priceTotal, item.quantity)
+    })
+
+    async function handleAddToOrderApi(productId, totalPrice, quantity) {
+      try {
+        const response = await addOrderApi(1, address, email, phone, note, 0, productId, totalPrice, quantity);
+        console.log("call");
+        if (response === 'data inserted') {
+          localStorage.removeItem('productListAddToCart')
+          navigate('/Order');
+        }
+      } catch (error) {
+        console.error("Lỗi đăng nhập:", error);
+      }
+    }
+  };
+
   return (
     <section className="section-content padding-y">
       <div className="container">
         <div className="row">
-          <main className="col-md-9">
+          <main className="col-md-12">
             <div className="card">
               <div className="card-body border-top">
-                <form className="form">
+                <form className="form" onSubmit={handleSubmit}>
                   <div className="containerx">
                     <div className="col-50">
                       <BillingInfo /> {/* Call BillingInfo component */}{' '}
                       <label for="fullname">
                         <i className="fa fa-user">&nbsp;</i>Full Name
                       </label>
-                      <input type="text" id="fullname" placeholder="Mr John" />
+                      <input
+                        type="text"
+                        id="fullname"
+                        placeholder="Mr John"
+                        value={fullname}
+                        onChange={(e) => {
+                          setFullname(e.target.value);
+                        }}
+                      />
                       <label for="email">
                         <i className="fa fa-envelope">&nbsp;</i>Your Email
                       </label>
-                      <input type="text" id="email" placeholder="John_admin@mail.com" />
+                      <input
+                        type="text"
+                        id="email"
+                        placeholder="John_admin@mail.com"
+                        value={email}
+                        onChange={(e) => {
+                          setEmail(e.target.value);
+                        }}
+                      />
                       <label for="address">
                         <i className="fa fa-address-card">&nbsp;</i>Address
                       </label>
-                      <input type="text" id="address" placeholder="542 st sant serit" />
+                      <input
+                        type="text"
+                        id="address"
+                        placeholder="542 st sant serit"
+                        value={address}
+                        onChange={(e) => {
+                          setAddress(e.target.value);
+                        }}
+                      />
                       <label for="city">
                         <i className="fa fa-phone">&nbsp;</i>Phone number
                       </label>
-                      <input type="phone" id="city" placeholder="Your phone" />
+                      <input
+                        type="phone"
+                        id="city"
+                        placeholder="Your phone"
+                        value={phone}
+                        onChange={(e) => {
+                          setPhone(e.target.value);
+                        }}
+                      />
                       <div className="containerx">
                         <div className="col-50">
                           <label for="note">Note</label>
 
-                          <textarea className={cx('text-area')} rows="7" cols="117" name="myTextarea"></textarea>
+                          <textarea
+                            className={cx('text-area')}
+                            rows="7"
+                            cols="117"
+                            name="myTextarea"
+                            value={note}
+                            onChange={(e) => {
+                              setNote(e.target.value);
+                            }}
+                          ></textarea>
                         </div>
                       </div>
                     </div>
                   </div>
+                <button type='submit' className={clsx('btn btn-primary float-md-right', cx('checkout-btn'))}>
+                  Finish <i className="fa fa-chevron-right"></i>
+                </button>
                 </form>
 
-                <a href="#" className={clsx('btn btn-primary float-md-right', cx('checkout-btn'))}>
-                  Finish <i className="fa fa-chevron-right"></i>
-                </a>
                 <a onClick={() => navigate(-1)} className={cx('btn btn-light')}>
                   <i className={clsx('fa fa-chevron-left', cx('back-to-cart-btn'))}></i>
                   Back to Cart
@@ -69,54 +140,6 @@ function Checkout() {
               </p>
             </div>
           </main>
-          <aside className="col-md-3">
-            <div className="card mb-3">
-              <div className="card-body">
-                <div className="col-25">
-                  <div className="cart">
-                    <h4>
-                      Cart{' '}
-                      <span className={cx('right')}>
-                        <i className="fa fa-shopping-cart">&nbsp;</i>4
-                      </span>
-                    </h4>
-
-                    <p>
-                      <a href="#">Product 1</a>
-                      <span className={cx('right')}>$</span>
-                    </p>
-                    <p>
-                      <a href="#">Product 2</a>
-                      <span className={cx('right')}>$5</span>
-                    </p>
-                    <p>
-                      <a href="#">Product 3</a>
-                      <span className={cx('right')}>$8</span>
-                    </p>
-                    <p>
-                      <a href="#">Product 4</a>
-                      <span className={cx('right')}>$2 </span>
-                    </p>
-                    <p>&nbsp;</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="card">
-              <div className={cx('card-body', cx('shopping-information'))}>
-                {/* Your total price calculation logic here */}
-                <div className="dlist-align">
-                  <dt>Total price:</dt>
-                  <dd className="text-right">USD {priceTotal}</dd>
-                </div>
-                {/* ... other price details ... */}
-                <hr />
-                <p className="text-center mb-3">
-                  <img src={images.misc.payments} height="26" />
-                </p>
-              </div>
-            </div>
-          </aside>
         </div>
       </div>
     </section>

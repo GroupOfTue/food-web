@@ -12,6 +12,7 @@ import Checkout from '~/pages/Checkout';
 
 import Introduce from '~/pages/Introduce';
 import PurchaseHistory from '~/pages/PurchaseHistory';
+import Order from '~/pages/Order';
 
 //Public routes
 const publicRoutes = [
@@ -27,6 +28,7 @@ const publicRoutes = [
   { path: '/PurchaseHistory', component: PurchaseHistory },
   { path: '/Checkout', component: Checkout },
   { path: '/Wishlist', component: Wishlist },
+  { path: '/Order', component: Order },
 ];
 
 //Private routes

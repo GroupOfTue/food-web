@@ -39,7 +39,7 @@ function Login() {
         navigate('/');
       }
     } catch (error) {
-      console.error("Lỗi đăng nhập:", error);
+      console.error('Lỗi đăng nhập:', error);
     }
   };
 

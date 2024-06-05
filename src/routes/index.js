@@ -13,6 +13,7 @@ import Checkout from '~/pages/Checkout';
 import Introduce from '~/pages/Introduce';
 import PurchaseHistory from '~/pages/PurchaseHistory';
 import Order from '~/pages/Order';
+import Admin from '~/pages/adminPage';
 
 //Public routes
 const publicRoutes = [
@@ -29,6 +30,7 @@ const publicRoutes = [
   { path: '/Checkout', component: Checkout },
   { path: '/Wishlist', component: Wishlist },
   { path: '/Order', component: Order },
+  { path: '/admin', component: Admin, layout:null },
 ];
 
 //Private routes

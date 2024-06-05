@@ -22,6 +22,7 @@ const publicRoutes = [
   { path: '/CartItem', component: CartItem },
   { path: '/Login', component: Login, layout: null },
   { path: '/Register', component: Register, layout: null },
+
   { path: '/Aboutme', component: Aboutme },
   { path: '/Introduce', component: Introduce },
   { path: '/PurchaseHistory', component: PurchaseHistory },

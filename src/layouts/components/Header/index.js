@@ -2,6 +2,7 @@ import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 import clsx from 'clsx';
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import images from '~/access/images';
@@ -10,7 +11,21 @@ const cx = classNames.bind(styles);
 
 function Header() {
   const navigate = useNavigate();
+  const phone = localStorage.getItem('rememberedPhone');
+  const password = localStorage.getItem('rememberedPassword');
+  const [userRole, setUserRole] = useState(false);
 
+  useEffect(() => {
+    const phone = localStorage.getItem('rememberedPhone');
+    setUserRole(phone);
+  }, []);
+
+  if (phone === '987654321' && password === 'admin123') {
+    // Display data here
+    console.log('Valid credentials! Displaying data:', phone, password);
+  } else {
+    console.log('Invalid credentials or no stored credentials found.');
+  }
   return (
     <header className={clsx('section-header', 'bg-white', cx('container'))}>
       <section className="border-bottom">
@@ -74,6 +89,15 @@ function Header() {
             </ul>
 
             <ul className="nav ">
+              {userRole === '987654321' && (
+                <li className="nav-item">
+                  <a onClick={() => navigate('/Admin')} className={clsx('nav-link', cx('dropdown-menu-toggle-item'))}>
+                    {' '}
+                    <i className="fa fa-user-circle"></i> Admin{' '}
+                  </a>
+                </li>
+              )}
+
               <li className="nav-item">
                 <a onClick={() => navigate('/Aboutme')} className={clsx('nav-link', cx('dropdown-menu-toggle-item'))}>
                   {' '}

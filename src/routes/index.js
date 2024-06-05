@@ -7,7 +7,7 @@ import Login from '~/pages/Login';
 import Register from '~/pages/Register';
 import Aboutme from '~/pages/Aboutme';
 import Wishlist from '~/pages/Wishlist';
-
+import Cooking from '~/pages/Cooking';
 import Checkout from '~/pages/Checkout';
 
 import Introduce from '~/pages/Introduce';
@@ -29,6 +29,7 @@ const publicRoutes = [
   { path: '/Checkout', component: Checkout },
   { path: '/Wishlist', component: Wishlist },
   { path: '/Order', component: Order },
+  { path: '/Cooking', component: Cooking },
 ];
 
 //Private routes

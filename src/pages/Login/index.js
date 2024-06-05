@@ -29,6 +29,7 @@ function Login() {
     try {
       const response = await LoginApi(phone, password);
       if (response === 'valid user') {
+        localStorage.setItem('isAuthenticated', 'true');
         if (remember) {
           localStorage.setItem('rememberedPhone', phone);
           localStorage.setItem('rememberedPassword', password);
@@ -47,7 +48,7 @@ function Login() {
     <section className={(clsx('section-conten padding-y'), cx('container'))} style={{ minHeight: '84vh' }}>
       <div className="card mx-auto" style={{ maxWidth: '380px', marginTop: '100px' }}>
         <div className="card-body">
-          <h4 className="card-title mb-4">Sign in</h4>
+          <h4 className="card-title mb-4">Log in</h4>
           <form onSubmit={handleSubmit}>
             <a href="#" className={clsx('btn btn-facebook btn-block mb-2', cx('fb-btn'))}>
               {' '}

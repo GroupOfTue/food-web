@@ -15,6 +15,25 @@ function Header() {
   const password = localStorage.getItem('rememberedPassword');
   const [userRole, setUserRole] = useState(false);
 
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  const phoneLocal = localStorage.getItem('rememberedPhone');
+  const passLocal = localStorage.getItem('rememberedPassword');
+
+  localStorage.setItem('isAuthenticated', 'true');
+
+  useEffect(() => {
+    // Check if the user is authenticated
+    const authStatus = localStorage.getItem('isAuthenticated');
+    setIsAuthenticated(authStatus === 'true');
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('isAuthenticated');
+    setIsAuthenticated(false);
+    navigate('/login');
+  };
+
   useEffect(() => {
     const phone = localStorage.getItem('rememberedPhone');
     setUserRole(phone);
@@ -88,35 +107,56 @@ function Header() {
               </li>
             </ul>
 
-            <ul className="nav ">
-              {userRole === '987654321' && (
-                <li className="nav-item">
-                  <a onClick={() => navigate('/Admin')} className={clsx('nav-link', cx('dropdown-menu-toggle-item'))}>
-                    {' '}
-                    <i className="fa fa-user-circle"></i> Admin{' '}
-                  </a>
-                </li>
+            <ul className="nav">
+              {isAuthenticated ? (
+                <>
+                {phoneLocal === '987654321' && passLocal === 'admin123' ? <li className="nav-item">
+                    <a href="Admin" className={clsx('nav-link', cx('dropdown-menu-toggle-item'))}>
+                      {' '}
+                      <i className="fa fa-user-circle"></i> admin{' '}
+                    </a>
+                  </li> : ""}
+                  <li className="nav-item">
+                    <a href="Aboutme" className={clsx('nav-link', cx('dropdown-menu-toggle-item'))}>
+                      {' '}
+                      <i className="fa fa-user-circle"></i> My Account{' '}
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a href="/WishList" className={clsx('nav-link', cx('dropdown-menu-toggle-item'))}>
+                      {' '}
+                      <i className="fa fa-heart"></i> Wishlist{' '}
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a onClick={() => navigate('/CartItem')} className={clsx('nav-link', cx('dropdown-menu-toggle-item'))}>
+                      {' '}
+                      <i className="fa fa-shopping-cart"></i> My Cart{' '}
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a onClick={handleLogout} className={clsx('nav-link', cx('dropdown-menu-toggle-item'))}>
+                      {' '}
+                      <i className="fa fa-sign-out-alt"></i> Logout{' '}
+                    </a>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li className="nav-item">
+                    <Link to="/register" className={clsx('nav-link', cx('dropdown-menu-toggle-item'))}>
+                      {' '}
+                      Sign Up{' '}
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link to="/login" className={clsx('nav-link', cx('dropdown-menu-toggle-item'))}>
+                      {' '}
+                      Login{' '}
+                    </Link>
+                  </li>
+                </>
               )}
-
-              <li className="nav-item">
-                <a onClick={() => navigate('/Aboutme')} className={clsx('nav-link', cx('dropdown-menu-toggle-item'))}>
-                  {' '}
-                  <i className="fa fa-user-circle"></i> My Account{' '}
-                </a>
-              </li>
-              <li className="nav-item">
-                <a href="/Wishlist" className={clsx('nav-link', cx('dropdown-menu-toggle-item'))}>
-                  {' '}
-                  <i className="fa fa-heart"></i> Wishlist{' '}
-                </a>
-              </li>
-              <li className="nav-item">
-                <a onClick={() => navigate('/CartItem')} className={clsx('nav-link', cx('dropdown-menu-toggle-item'))}>
-                  {' '}
-                  <i className="fa fa-shopping-cart"></i> My Cart{' '}
-                  {/* <span className="badge badge-pill badge-danger">1</span>{' '} */}
-                </a>
-              </li>
             </ul>
           </nav>
         </div>

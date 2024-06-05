@@ -36,7 +36,7 @@ function DealHomePage() {
   ];
 
   // Cập nhật thời gian
-  const [endDate] = useState(new Date('2024-06-10T23:00:00')); // Thay đổi ngày giờ kết thúc ở đây
+  const [endDate] = useState(new Date('2024-06-05T17:00:00')); // Thay đổi ngày giờ kết thúc ở đây
 
   const calculateTimeLeft = () => {
     const difference = +endDate - +new Date();

@@ -16,7 +16,7 @@ function Item({ id, title, address, image, onClick }) {
       className="col-6 col-lg-3 col-md-4"
       style={{ cursor: 'pointer' }}
     >
-      <div className="item">
+      <div className={cx('item')} >
         <div className="card-body">
           <h6 className="title">{title}</h6>
           <div className={cx('wrap-img-address')}>

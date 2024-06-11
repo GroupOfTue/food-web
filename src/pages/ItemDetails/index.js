@@ -1,38 +1,88 @@
 import classNames from 'classnames/bind';
 import clsx from 'clsx';
 import { useParams } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import styles from './ItemDetails.module.scss';
+import Review from './Review';
 import images from '~/access/images';
+import { getProductDetails } from '~/api/product';
 import { GetAllProduct } from '~/MockApi/GetAllProduct.js';
 
 function ItemDetails() {
   const cx = classNames.bind(styles);
   const { id } = useParams();
-  let itemDetails = {};
+  // let itemDetails = {};
   const [quantity, setQuantity] = useState(1);
+  const [itemDetails, setItemDetails] = useState({});
 
+  //tạo dữ liệu đánh giá fake
+  const reviews = [
+    {
+      id: 1,
+      authorName: 'John Doe',
+      date: '2024-06-01 8:53',
+      rating: 5,
+      content: 'Sản phẩm này tuyệt vời!',
+    },
+    {
+      id: 2,
+      authorName: 'John Doe2',
+      date: '2024-06-0 27:29',
+      rating: 3,
+      content: 'Sản phẩm này chưa được đẹp với tôi!',
+    },
+    {
+      id: 3,
+      authorName: 'John wtich',
+      date: '2024-06-04  9:40',
+      rating: 4,
+      content: 'Sản phẩm này chưa được đẹp với tôi!',
+    },
+    {
+      id: 4,
+      authorName: 'Jim',
+      date: '2024-06-10',
+      rating: 4,
+      content: 'Sản phẩm này  đẹp với tôi!',
+    },
+  ];
   //call api fake
-  const productList = GetAllProduct;
-  productList.forEach((e) => {
-    if (e.id === +id) {
-      itemDetails = e;
+  // const productList = GetAllProduct;
+  // productList.forEach((e) => {
+  //   if (e.id === +id) {
+  //     itemDetails = e;
+  //   }
+  // });
+
+  useEffect(() => {
+    try {
+      getProductDetails(id)
+        .then((result) => {
+          console.log('itemdetails: ', result);
+          setItemDetails(result);
+        })
+        .catch((error) => {
+          console.log('loi get product: ', error);
+        });
+    } catch (error) {
+      console.error('Lỗi đăng nhập:', error);
     }
-  });
+  }, []);
 
   //handle when adding products to the cart
   const addToCart = () => {
     const productListAddToCart = localStorage.getItem('productListAddToCart');
-
     if (productListAddToCart) {
       const arr = JSON.parse(productListAddToCart);
-      const item = arr.find((item) => item.id === itemDetails.id);
-      if (item) {
-        item.quantity += quantity;
-        item.priceTotal = item.quantity * item.price;
-      } else {
-        arr.push({ ...itemDetails, priceTotal: quantity * itemDetails.price, quantity: quantity });
+      if (arr && itemDetails) {
+        const item = arr.find((item) => item.id === itemDetails.id);
+        if (item) {
+          item.quantity += quantity;
+          item.priceTotal = item.quantity * item.price;
+        } else {
+          arr.push({ ...itemDetails, priceTotal: quantity * itemDetails.price, quantity: quantity });
+        }
       }
 
       const totalPriceProductList = arr.reduce((total, item) => total + item.priceTotal, 0);
@@ -41,6 +91,41 @@ function ItemDetails() {
     } else {
       localStorage.setItem('productListAddToCart', JSON.stringify([itemDetails]));
       localStorage.setItem('totalPriceProductList', JSON.stringify([itemDetails.priceTotal]));
+    }
+  };
+  // Add item to wishlist
+  const addToWishlist = (itemDetails) => {
+    const wishlist = localStorage.getItem('wishlist');
+
+    // Parse wishlist data (handle potential errors)
+    let wishlistArr = [];
+    try {
+      wishlistArr = wishlist ? JSON.parse(wishlist) : [];
+    } catch (error) {
+      console.error('Error parsing wishlist:', error);
+      // Optionally notify user about the error
+    }
+
+    // Check if item already exists, display message if so
+    const existingItem = wishlistArr.find((item) => item.id === itemDetails.id);
+    if (existingItem) {
+      console.info('Item already in wishlist!');
+      // Optionally display a message to the user
+      return;
+    }
+
+    // Add new item to wishlist
+    wishlistArr.push({ ...itemDetails });
+
+    // Update wishlist in localStorage
+    localStorage.setItem('wishlist', JSON.stringify(wishlistArr));
+
+    console.info('Item added to wishlist successfully!');
+    const wishlistButton = document.querySelector('.love-icon'); // Replace with actual element id
+    if (wishlistButton) {
+      wishlistButton.style.display = 'none';
+    } else {
+      console.warn("Element with id='heart' not found. Please check the element's id.");
     }
   };
 
@@ -55,26 +140,26 @@ function ItemDetails() {
                   <div>
                     {' '}
                     <a href="#">
-                      <img src={itemDetails.images} />
+                      <img src={images['items'][itemDetails.images]} />
                     </a>
                   </div>
                 </div>
                 <div className={cx('sub-img-wrap')}>
                   <a href="#" className="item-thumb">
                     {' '}
-                    <img src={itemDetails.subImages[0]} />
+                    <img src={images['items'][itemDetails.images]} />
                   </a>
                   <a href="#" className="item-thumb">
                     {' '}
-                    <img src={itemDetails.subImages[1]} />
+                    <img src={images['items'][itemDetails.images]} />
                   </a>
                   <a href="#" className="item-thumb">
                     {' '}
-                    <img src={itemDetails.subImages[2]} />
+                    <img src={images['items'][itemDetails.images]} />
                   </a>
                   <a href="#" className="item-thumb">
                     {' '}
-                    <img src={itemDetails.subImages[3]} />
+                    <img src={images['items'][itemDetails.images]} />
                   </a>
                 </div>
               </article>
@@ -108,7 +193,7 @@ function ItemDetails() {
                 <span className="text-muted">USD</span>
               </div>
 
-              <p>{itemDetails.discription}</p>
+              <p>{itemDetails.description}</p>
 
               <dl className="row">
                 <dt className="col-sm-3">{itemDetails.Manufacturer}</dt>
@@ -175,12 +260,25 @@ function ItemDetails() {
                   <a href="#" className="btn btn-light">
                     <i className="fas fa-envelope"></i> <span className="text">Contact supplier</span>
                   </a>
+                  <a
+                    data-original-title="Save to Wishlist"
+                    title=""
+                    onClick={() => {
+                      addToWishlist(itemDetails);
+                    }}
+                    className={clsx('btn btn-light', cx('love-icon'))}
+                    data-toggle="tooltip"
+                  >
+                    {' '}
+                    <i className="fa fa-heart" style={{ color: 'red' }}></i>
+                  </a>
                 </div>
               </div>
             </article>
           </main>
         </div>
       </div>
+      <Review reviews={reviews} />
     </section>
   );
 }

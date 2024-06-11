@@ -2,6 +2,7 @@ import classNames from 'classnames/bind';
 import clsx from 'clsx';
 import React, { useState, useEffect } from 'react';
 import styles from './Item.module.scss';
+import images from '~/access/images';
 
 function Item({
   id,
@@ -18,6 +19,7 @@ function Item({
   quantity,
   price,
   quantityChange,
+  idProduct,
 }) {
   const cx = classNames.bind(styles);
 
@@ -40,7 +42,6 @@ function Item({
     arr = [];
     localStorage.setItem('productListAddToCart', JSON.stringify(arr));
   };
-
   //calculate total price
   const totalPriceProductList = arr.reduce((total, item) => total + item.priceTotal, 0);
   localStorage.setItem('totalPriceProductList', JSON.stringify(totalPriceProductList));
@@ -50,11 +51,11 @@ function Item({
       <td className={cx('item')}>
         <figure className={cx('itemside')}>
           <div className="aside">
-            <img src={image} className={cx('img-sm')} />
+            <img src={images['items'][image]} className={cx('img-sm')} />
           </div>
           <figcaption className="info">
             <a href="#" className="title text-dark">
-              Some name of item goes here nice
+              {title}
             </a>
             <p className="text-muted small">
               Size: XL, Color: blue, <br /> Brand: Gucci
@@ -68,7 +69,7 @@ function Item({
             {quantity > 1 ? (
               <button
                 onClick={() => {
-                  quantityChange(quantity - 1);
+                  quantityChange(idProduct, quantity - 1);
                 }}
                 className="btn btn-light"
                 type="button"
@@ -95,7 +96,7 @@ function Item({
           <div className="input-group-append">
             <button
               onClick={() => {
-                quantityChange(quantity + 1);
+                quantityChange(idProduct, quantity + 1);
               }}
               className="btn btn-light"
               type="button"
@@ -112,16 +113,6 @@ function Item({
         </div>
       </td>
       <td className="text-right">
-        <a
-          data-original-title="Save to Wishlist"
-          title=""
-          href=""
-          className={clsx('btn btn-light', cx('love-icon'))}
-          data-toggle="tooltip"
-        >
-          {' '}
-          <i className="fa fa-heart"></i>
-        </a>
         <a onClick={() => deleteProduct(id)} className="btn btn-light">
           {' '}
           Remove

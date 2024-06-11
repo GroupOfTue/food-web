@@ -10,20 +10,18 @@ import Item from './Item';
 function CartItem() {
   const cx = classNames.bind(styles);
   const navigate = useNavigate();
-  const [priceTotal, setPriceTotal] = useState(() => {
-    
-    return JSON.parse(localStorage.getItem('totalPriceProductList')) ?? []
-  }
-    );
+  const [priceTotal, setPriceTotal] = useState(0);
   const [productListAddToCart, setProductListAddToCart] = useState(
     JSON.parse(localStorage.getItem('productListAddToCart')),
   );
 
   //check the product list add to cart is empty
   useEffect(() => {
-    if (productListAddToCart.length === 0) {
+    if (productListAddToCart && productListAddToCart.length === 0) {
       setPriceTotal(0);
-      localStorage.setItem('totalPriceProductList', 0);
+    } else {
+  // lấy thông tin tổng tiền gán vào biến
+      setPriceTotal(localStorage.getItem('totalPriceProductList'))
     }
   }, [productListAddToCart]);
 
@@ -35,11 +33,26 @@ function CartItem() {
     setProductListAddToCart(arr);
   };
 
-  //handle when product quantity change 
-  const handelQuantityChange = (total) => {
-    const totalPriceProductList = localStorage.getItem('totalPriceProductList');
-    setPriceTotal(totalPriceProductList);
+  //handle when product quantity change
+  const handelQuantityChange = (id, quantity) => {
+    if(quantity >= 0) {
+      //lọc qua mảng sản phẩm hiện tại để tính tiền của sản phẩm hiện tại và tồng tiền các sản phẩm
+      let arr = JSON.parse(localStorage.getItem('productListAddToCart'));
+      const arrNew = arr.map((item) => {
+        if(item.id === id) {
+          item.quantity = quantity
+          item.priceTotal = item.quantity * item.price
+          return item
+        }
+        return item
+      })
+
+      //đã thay đổi quantity của sản phẩm, set vào locallog
+      localStorage.setItem('productListAddToCart', JSON.stringify(arrNew))
+      setProductListAddToCart(arrNew)
+    }
   };
+
   return (
     <section className="section-content padding-y">
       <div className="container">
@@ -57,15 +70,16 @@ function CartItem() {
                       Price
                     </th>
                     <th scope="col" className="text-right" width="200">
-                      {' '}
+                      Total{' '}
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {productListAddToCart.map((item, index) => (
+                  {productListAddToCart ? productListAddToCart.map((item, index) => (
                     <Item
                       key={index}
                       id={index}
+                      idProduct={item.id}
                       image={item.images}
                       title={item.title}
                       quantity={item.quantity}
@@ -74,14 +88,17 @@ function CartItem() {
                       deleteProduct={handleDelete}
                       quantityChange={handelQuantityChange}
                     />
-                  ))}
+                  )) : ""}
                 </tbody>
               </table>
 
               <div className="card-body border-top">
-                <a href="#" className={clsx('btn btn-primary float-md-right', cx('purchase-btn'))}>
+                <a
+                  onClick={() => navigate('/checkout')}
+                  className={clsx('btn btn-primary float-md-right', cx('purchase-btn'))}
+                >
                   {' '}
-                  Make Purchase <i className="fa fa-chevron-right"></i>{' '}
+                  Check Out <i className="fa fa-chevron-right"></i>{' '}
                 </a>
                 <a onClick={() => navigate(-1)} className="btn btn-light">
                   {' '}
